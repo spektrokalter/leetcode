@@ -36,7 +36,7 @@ lookup(int key)
 		if ((*e)->key == key)
 			return e;
 
-		e = &((*e)->next);
+		e = &(*e)->next;
 	}
 
 	return e;
