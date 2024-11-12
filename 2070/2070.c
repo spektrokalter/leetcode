@@ -52,20 +52,6 @@ arrprint
 	printf("\n");
 }
 
-void
-arr2print
-	(int **p, int rows, int cols)
-{
-	for (int **q = p; q != p+rows; ++q) {
-		for (int *r = *q; r != *q+cols; ++r)
-			printf(" %d", *r);
-
-		printf(" |");
-	}
-
-	printf("\n");
-}
-
 int
 cmpitems(const void *vp1, const void *vp2)
 {
@@ -90,7 +76,6 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 	memset(dict, 0, sizeof(dict));
 
 	qsort(items, nitems, sizeof(*items), cmpitems);
-//	arr2print(items, nitems, 2);
 
 	int *answer;
 	answer = calloc(nqueries, sizeof(*answer));
