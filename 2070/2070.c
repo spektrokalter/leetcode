@@ -101,7 +101,7 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 		Entry **e = lookup(*qp);
 		if (*e) {
 			*(ap++) = (*e)->val;
-			goto nextquery;
+			continue;
 		}
 
 		// i is the smallest items[i] at which items[i][0] > *qp
@@ -121,21 +121,16 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 			Entry **e = lookup((*ip)[0]);
 			if (*e) {
 				beauty = MAX(beauty, (*e)->val);
-				goto catchbeauty;
+				break;
 			}
 
 			beauty = MAX(beauty, (*ip)[1]);
 		}
 
-	catchbeauty:
-
 		e = lookup(*qp);
 		*e = entryMake(*qp, beauty);
 
 		*(ap++) = beauty;
-
-	nextquery:
-		;
 	}
 
 	*nanswer = nqueries;
