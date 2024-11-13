@@ -89,20 +89,21 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 			continue;
 		}
 
-		// i is the smallest items[i] at which items[i][0] > *qp
-		int i = 0, j = nitems;
-		while (i < j) {
-			int h = (i + j) / 2;
-			if (!(items[h][0] > *qp))
-				i = h + 1;
+		// ip is the smallest on [items; items+nitems) at which (*ip)[0] > *qp
+		int **ip = items, **limit = items+nitems;
+		while (ip < limit) {
+			int **h = ip + (limit - ip)/2;
+			if (!((*h)[0] > *qp))
+				ip = h + 1;
 			else
-				j = h;
+				limit = h;
 		}
 
-		int beauty = 0;
+		// make (*ip)[0] <= *qp
+		--ip;
 
-		int **ip = items + i - 1;
-		for (int j = i - 1; j >= 0; --j, --ip) {
+		int beauty = 0;
+		for (; ip != items-1; --ip) {
 			Entry **e = lookup((*ip)[0]);
 			if (*e) {
 				beauty = MAX(beauty, (*e)->val);
