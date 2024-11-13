@@ -16,7 +16,7 @@ typedef struct entry Entry;
 Entry *dict[NMEM];
 
 Entry *
-entryMake(int key, int val)
+entrymk(int key, int val)
 {
 	Entry *e;
 	e = calloc(1, sizeof(*e));
@@ -113,7 +113,7 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 			beauty = MAX(beauty, (*ip)[1]);
 		}
 
-		*lookup(*qp) = entryMake(*qp, beauty);
+		*lookup(*qp) = entrymk(*qp, beauty);
 		*(ap++) = beauty;
 	}
 
