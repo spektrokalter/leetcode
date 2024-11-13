@@ -112,9 +112,7 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 			beauty = MAX(beauty, (*ip)[1]);
 		}
 
-		e = lookup(*qp);
-		*e = entryMake(*qp, beauty);
-
+		*lookup(*qp) = entryMake(*qp, beauty);
 		*(ap++) = beauty;
 	}
 
