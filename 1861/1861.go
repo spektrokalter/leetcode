@@ -20,7 +20,7 @@ func rotateTheBox(x [][]byte) [][]byte {
 
 				if stone >= 0 && x[row][stone] == '#' {
 					x[row][stone], x[row][i] = '.', '#'
-					y[stone][len(x)-1-row] = x[row][stone]
+					y[stone][len(x)-1-row] = '.'
 				}
 			}
 
