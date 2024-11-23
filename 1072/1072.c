@@ -11,7 +11,7 @@ struct rtnode
 {
 	char *s;
 	int count;
-	Rtnode *children[256];
+	Rtnode *children[2];
 };
 
 struct radixtree
@@ -55,7 +55,7 @@ rtins(Rtnode *head, char *s)
 	// head->s is fully a prefix of s.
 	//
 	if (!head->s[i]) {
-		Rtnode **p = head->children + s[i];
+		Rtnode **p = head->children + s[i] - '0';
 		*p = rtins(*p, s + i);
 		return head;
 	}
@@ -64,11 +64,11 @@ rtins(Rtnode *head, char *s)
 	//
 	Rtnode *subtree = rtnew(head->s + i, head->count);
 	head->count = 0;
-	for (int i = 0; i < 256; i++) {
+	for (int i = 0; i < 2; ++i) {
 		subtree->children[i] = head->children[i];
 		head->children[i] = NULL;
 	}
-	head->children[head->s[i]] = subtree;
+	head->children[head->s[i] - '0'] = subtree;
 
 	if (!s[i]) {
 		// s is fully a prefix of head->s.
@@ -78,7 +78,7 @@ rtins(Rtnode *head, char *s)
 		// s is partly a prefix of head->s.
 
 		head->count = 0;
-		head->children[s[i]] = rtnew(s + i, 1);
+		head->children[s[i] - '0'] = rtnew(s + i, 1);
 	}
 
 	// Only keep matching part of the string.
@@ -111,7 +111,7 @@ rtcontains(Rtnode *head, char *s)
 	// head->s is fully a prefix of s.
 	//
 	if (!head->s[i])
-		return rtcontains(head->children[s[i]], s+i);
+		return rtcontains(head->children[s[i] - '0'], s+i);
 
 	// s is either fully (!s[i]) or partly a prefix of head->s.
 	//
@@ -125,7 +125,7 @@ rtmaxcount(Rtnode *head)
 		return 0;
 
 	int count = head->count;
-	for (int i = 0; i < 256; i++) {
+	for (int i = 0; i < 2; ++i) {
 		int x = rtmaxcount(head->children[i]);
 		count = MAX(count, x);
 	}
@@ -145,14 +145,14 @@ rtreenew(void)
 void
 rtreeins(Rtree *rt, char *s)
 {
-	Rtnode **p = rt->root->children + *s;
+	Rtnode **p = rt->root->children + *s - '0';
 	*p = rtins(*p, s);
 }
 
 bool
 rtreefullmatch(Rtree *rt, char *s)
 {
-	return rtcontains(rt->root->children[*s], s);
+	return rtcontains(rt->root->children[*s - '0'], s);
 }
 
 void
