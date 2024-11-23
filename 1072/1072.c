@@ -47,10 +47,8 @@ rtins(Rtnode *head, char *s)
 	// Find first i such that head->s[i] != s[i].
 	//
 	size_t i = 0;
-	for (; head->s[i] && s[i]; i++) {
-		if (head->s[i] != s[i])
-			break;
-	}
+	while (head->s[i] && s[i] && head->s[i] == s[i])
+		++i;
 
 	// head->s is fully a prefix of s.
 	//
