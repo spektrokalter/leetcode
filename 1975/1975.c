@@ -8,7 +8,6 @@ long long
 maxMatrixSum(int **matrix, int rows, int *cols)
 {
 	int totalnegatives = 0;
-	int totalzeroes = 0;
 	int minabs = INT_MAX;
 	int found = false;
 	long long sum = 0;
@@ -19,8 +18,6 @@ maxMatrixSum(int **matrix, int rows, int *cols)
 
 			if (*cell < 0)
 				++totalnegatives;
-			if (*cell == 0)
-				++totalzeroes;
 
 			if (abs(*cell) < minabs) {
 				if (found)
@@ -33,7 +30,7 @@ maxMatrixSum(int **matrix, int rows, int *cols)
 		}
 	}
 
-	if (found && (totalnegatives%2 == 0 || totalzeroes > 0))
+	if (found && (totalnegatives%2 == 0))
 		sum += 2 * minabs;
 
 	return sum;
