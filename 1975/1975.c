@@ -30,7 +30,7 @@ maxMatrixSum(int **matrix, int rows, int *cols)
 		}
 	}
 
-	if (found && (totalnegatives%2 == 0))
+	if (totalnegatives%2 == 0)
 		sum += 2 * minabs;
 
 	return sum;
