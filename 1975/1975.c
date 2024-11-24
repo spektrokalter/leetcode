@@ -16,7 +16,7 @@ maxMatrixSum(int **matrix, int rows, int *cols)
 		for (int *cell = *row; cell != *row+cols[0]; ++cell) {
 			sum += abs(*cell);
 
-			if (*cell < 0)
+			if (*cell <= 0)
 				++totalnegatives;
 
 			if (*cell < 0 && *cell > maxnegative) {
@@ -102,12 +102,29 @@ wronganswer1(void)
 	printf("sum: %d\n", sum); // 15
 }
 
+void
+wronganswer2(void)
+{
+	printf("1975.c:/wronganswer2/\n");
+
+	int arr[][3] = {
+		{-3, 0, 0},
+		{0, 0, 0},
+		{0, 3, 2},
+	};
+	int cols[] = {3, 3, 3};
+
+	int sum = maxMatrixSum(mkarr(arr, 3, 3), 3, cols);
+	printf("sum: %d\n", sum); // 8
+}
+
 int
 main(void)
 {
 	example1();
 	example2();
 	wronganswer1();
+	wronganswer2();
 
 	return 0;
 }
