@@ -7,7 +7,8 @@
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 #define MIN(x, y) ((x)<(y) ? (x) : (y))
 
-int mem[6][6][6][6][6][6];
+bool seenmem[6][6][6][6][6][6];
+int movesmem[6][6][6][6][6][6];
 
 int dirs[4][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 
@@ -22,25 +23,33 @@ solved(int **board)
 		board[1][2] == 0;
 }
 
-int
-dfs(int **b)
+bool *
+seen(int **b)
 {
-	int *moves = &mem[b[0][0]][b[0][1]][b[0][2]][b[1][0]][b[1][1]][b[1][2]];
+	return &seenmem[b[0][0]][b[0][1]][b[0][2]][b[1][0]][b[1][1]][b[1][2]];
+}
 
-	// backtracking protection
-	if (*moves == -2)
-		return INT_MAX;
+int *
+moves(int **b)
+{
+	return &movesmem[b[0][0]][b[0][1]][b[0][2]][b[1][0]][b[1][1]][b[1][2]];
+}
 
-	if (*moves)
-		return *moves - 1;
+void
+dfs(int **b, int movesdone)
+{
+	if (*seen(b))
+		return;
 
-	if (solved(b)) {
-		*moves = 1;
-		return 0;
-	}
+	if (*moves(b) && movesdone >= *moves(b))
+		return;
+	else
+		*moves(b) = movesdone + 1;
 
-	// backtracking protection
-	*moves = -2;
+	if (solved(b))
+		return;
+
+	*seen(b) = true;
 
 	int i, j;
 
@@ -53,8 +62,6 @@ dfs(int **b)
 		}
 	}
 
-	int deepmoves = INT_MAX - 1;
-
 	for (int (*dir)[2] = dirs; dir != dirs+ARRAY_LEN(dirs); ++dir) {
 		int ii = i + (*dir)[0], jj = j + (*dir)[1];
 		if (ii < 0 || ii >= 2 || jj < 0 || jj >= 3)
@@ -63,26 +70,23 @@ dfs(int **b)
 		int *src = &b[i][j], *dst = &b[ii][jj];
 		int tmp = *src; *src = *dst; *dst = tmp;
 
-		int x = dfs(b);
-		deepmoves = MIN(deepmoves, x);
+		dfs(b, movesdone+1);
 
 		tmp = *src; *src = *dst; *dst = tmp;
 	}
 
-	*moves = deepmoves + 1;
-	return *moves;
+	*seen(b) = false;
 }
 
 int
 slidingPuzzle(int **board, int rows, int *cols)
 {
-	memset(mem, 0, sizeof(mem));
+	memset(seenmem, 0, sizeof(seenmem));
+	memset(movesmem, 0, sizeof(movesmem));
 
-	int moves = dfs(board);
-	if (moves == INT_MAX)
-		return -1;
+	dfs(board, 0);
 
-	return moves;
+	return movesmem[1][2][3][4][5][0] - 1;
 }
 
 int **
