@@ -12,17 +12,6 @@ int movesmem[6][6][6][6][6][6];
 
 int dirs[4][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 
-bool
-solved(int **board)
-{
-	return board[0][0] == 1 &&
-		board[0][1] == 2 &&
-		board[0][2] == 3 &&
-		board[1][0] == 4 &&
-		board[1][1] == 5 &&
-		board[1][2] == 0;
-}
-
 bool *
 seen(int **b)
 {
@@ -45,9 +34,6 @@ dfs(int **b, int movesdone)
 		return;
 	else
 		*moves(b) = movesdone + 1;
-
-	if (solved(b))
-		return;
 
 	*seen(b) = true;
 
