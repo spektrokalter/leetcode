@@ -5,7 +5,6 @@
 #include <string.h>
 
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
-#define MIN(x, y) ((x)<(y) ? (x) : (y))
 
 bool seenmem[6][6][6][6][6][6];
 int movesmem[6][6][6][6][6][6];
