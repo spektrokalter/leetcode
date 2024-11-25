@@ -27,15 +27,11 @@ moves(int **b)
 void
 dfs(int **b, int movesdone)
 {
-	if (*seen(b))
+	if (*seen(b) || *moves(b) && movesdone >= *moves(b))
 		return;
-
-	if (*moves(b) && movesdone >= *moves(b))
-		return;
-	else
-		*moves(b) = movesdone + 1;
 
 	*seen(b) = true;
+	*moves(b) = movesdone + 1;
 
 	int i, j;
 
