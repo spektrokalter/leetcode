@@ -10,16 +10,17 @@ func findChampion(n int, edges [][]int) int {
 		parent[e[1]] = append(parent[e[1]], e[0])
 	}
 
-	var roots []int
+	champ := 0
+	roots := 0
 	for i := range n {
 		if parent[i] == nil {
-			roots = append(roots, i)
+			roots++
+			champ = i
+		}
+		if roots > 1 {
+			return -1
 		}
 	}
 
-	if len(roots) > 1 {
-		return -1
-	}
-
-	return roots[0]
+	return champ
 }
