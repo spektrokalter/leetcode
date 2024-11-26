@@ -5,7 +5,7 @@ func FindChampion(n int, edges [][]int) int {
 }
 
 func findChampion(n int, edges [][]int) int {
-	parents := map[int]int{}
+	parents := make([]int, n)
 	for _, e := range edges {
 		parents[e[1]]++
 	}
