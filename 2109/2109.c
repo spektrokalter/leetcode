@@ -19,12 +19,10 @@ addSpaces(char *s, int *spaces, int nspaces)
 	*(bufp--) = 0;
 
 	while (sp != s-1) {
-		if (spacesp >= spaces && sp-s == *spacesp) {
-			*(bufp--) = *(sp--);
+		*(bufp--) = *(sp--);
+		if (spacesp >= spaces && sp+1-s == *spacesp) {
 			*(bufp--) = ' ';
 			--spacesp;
-		} else {
-			*(bufp--) = *(sp--);
 		}
 	}
 
