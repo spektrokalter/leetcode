@@ -1,10 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
-
-// 3e5 string + 3e5 spaces + 0
-char buf[600001];
 
 char *
 addSpaces(char *s, int *spaces, int nspaces)
@@ -13,8 +11,11 @@ addSpaces(char *s, int *spaces, int nspaces)
 	int *spacesp = spaces + nspaces - 1;
 
 	char *sp = s + len - 1;
-	char *bufp = buf + len + nspaces;
 
+	char *buf;
+	buf = calloc(len + nspaces + 1, sizeof(*buf));
+
+	char *bufp = buf + len + nspaces;
 	*(bufp--) = 0;
 
 	while (sp != s-1) {
@@ -27,7 +28,7 @@ addSpaces(char *s, int *spaces, int nspaces)
 		}
 	}
 
-	return strdup(buf);
+	return buf;
 }
 
 void
