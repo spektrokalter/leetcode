@@ -12,21 +12,21 @@ addSpaces(char *s, int *spaces, int nspaces)
 
 	char *sp = s + len - 1;
 
-	char *buf;
-	buf = calloc(len + nspaces + 1, sizeof(*buf));
+	char *withspaces;
+	withspaces = calloc(len + nspaces + 1, sizeof(*withspaces));
 
-	char *bufp = buf + len + nspaces;
-	*(bufp--) = 0;
+	char *wp = withspaces + len + nspaces;
+	*(wp--) = 0;
 
 	while (sp != s-1) {
-		*(bufp--) = *(sp--);
+		*(wp--) = *(sp--);
 		if (spacesp >= spaces && sp+1-s == *spacesp) {
-			*(bufp--) = ' ';
+			*(wp--) = ' ';
 			--spacesp;
 		}
 	}
 
-	return buf;
+	return withspaces;
 }
 
 void
