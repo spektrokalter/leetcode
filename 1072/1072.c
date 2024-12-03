@@ -25,59 +25,60 @@ rtnew(char *s, int count)
 }
 
 void
-rtins(Rtnode **head, char *s)
+rtins(Rtnode **headp, char *s)
 {
 	// On each iteration head represents s[0].
 	// That is, head->s[0] == s[0].
 
-	if (!*head) {
-		*head = rtnew(s, 1);
+	if (!*headp) {
+		*headp = rtnew(s, 1);
 		return;
 	}
 
-	if (0 == strcmp((*head)->s, s)) {
-		(*head)->count++;
+	Rtnode *head = *headp;
+
+	if (0 == strcmp(head->s, s)) {
+		head->count++;
 		return;
 	}
 
 	// Find first i such that head->s[i] != s[i].
 	//
 	size_t i = 0;
-	while ((*head)->s[i] && s[i] && (*head)->s[i] == s[i])
+	while (head->s[i] && s[i] && head->s[i] == s[i])
 		++i;
 
 	// head->s is fully a prefix of s.
 	//
-	if (!(*head)->s[i]) {
-		Rtnode **p = (*head)->children + s[i] - '0';
-		rtins(p, s + i);
+	if (!head->s[i]) {
+		rtins(&head->children[s[i]-'0'], s + i);
 		return;
 	}
 
 	// Keep matching part, make the rest its child.
 	//
-	Rtnode *subtree = rtnew((*head)->s + i, (*head)->count);
-	(*head)->count = 0;
+	Rtnode *subtree = rtnew(head->s + i, head->count);
+	head->count = 0;
 	for (int i = 0; i < 2; ++i) {
-		subtree->children[i] = (*head)->children[i];
-		(*head)->children[i] = NULL;
+		subtree->children[i] = head->children[i];
+		head->children[i] = NULL;
 	}
-	(*head)->children[(*head)->s[i] - '0'] = subtree;
+	head->children[head->s[i] - '0'] = subtree;
 
 	if (!s[i]) {
 		// s is fully a prefix of head->s.
 
-		(*head)->count = 1;
+		head->count = 1;
 	} else {
 		// s is partly a prefix of head->s.
 
-		(*head)->count = 0;
-		(*head)->children[s[i] - '0'] = rtnew(s + i, 1);
+		head->count = 0;
+		head->children[s[i] - '0'] = rtnew(s + i, 1);
 	}
 
 	// Only keep matching part of the string.
 	//
-	(*head)->s[i] = 0;
+	head->s[i] = 0;
 }
 
 bool
