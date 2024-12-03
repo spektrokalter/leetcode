@@ -13,7 +13,9 @@ addSpaces(char *s, int *spaces, int nspaces)
 	int *spacesp = spaces + nspaces - 1;
 
 	char *sp = s + len - 1;
-	char *bufp = buf + len + nspaces - 1;
+	char *bufp = buf + len + nspaces;
+
+	*(bufp--) = 0;
 
 	while (sp != s-1) {
 		if (spacesp >= spaces && sp-s == *spacesp) {
