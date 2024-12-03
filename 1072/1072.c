@@ -14,12 +14,6 @@ struct rtnode
 	Rtnode *children[2];
 };
 
-struct radixtree
-{
-	Rtnode *root;
-};
-typedef struct radixtree Rtree;
-
 Rtnode *
 rtnew(char *s, int count)
 {
@@ -129,28 +123,6 @@ rtmaxcount(Rtnode *head)
 	return count;
 }
 
-Rtree *
-rtreenew(void)
-{
-	Rtree *rt;
-	rt = calloc(1, sizeof(*rt));
-	rt->root = rtnew("/", 0);
-	return rt;
-}
-
-void
-rtreeins(Rtree *rt, char *s)
-{
-	Rtnode **p = rt->root->children + *s - '0';
-	*p = rtins(*p, s);
-}
-
-bool
-rtreefullmatch(Rtree *rt, char *s)
-{
-	return rtcontains(rt->root->children[*s - '0'], s);
-}
-
 void
 strrev(char *dst, char *src)
 {
@@ -168,7 +140,7 @@ strrev(char *dst, char *src)
 int
 maxEqualRowsAfterFlips(int **matrix, int rows, int *cols)
 {
-	Rtree *rt = rtreenew();
+	Rtnode *root = rtnew("/", 0);
 
 	for (int **p = matrix; p != matrix+rows; ++p) {
 		char s[301] = {0};
@@ -182,13 +154,16 @@ maxEqualRowsAfterFlips(int **matrix, int rows, int *cols)
 		char rev[301] = {0};
 		strrev(rev, s);
 
-		if (rtreefullmatch(rt, rev))
-			rtreeins(rt, rev);
-		else
-			rtreeins(rt, s);
+		if (rtcontains(root->children[*rev-'0'], rev)) {
+			Rtnode **node = &root->children[*rev-'0'];
+			*node = rtins(*node, rev);
+		} else {
+			Rtnode **node = &root->children[*s-'0'];
+			*node = rtins(*node, s);
+		}
 	}
 
-	return rtmaxcount(rt->root);
+	return rtmaxcount(root);
 }
 
 int **
