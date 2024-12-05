@@ -18,16 +18,12 @@ canChange(char *start, char *target)
 		while (*tp && *tp == '_')
 			++tp;
 
-		if (!*tp)
-			return false;
-
-		if (*sp == 'L' && *tp == 'L' && sp-start < tp-target)
-			return false;
-
-		if (*sp == 'R' && *tp == 'R' && sp-start > tp-target)
-			return false;
-
-		if (*sp != *tp)
+		if (
+			!*tp ||
+			*sp == 'L' && *tp == 'L' && sp-start < tp-target ||
+			*sp == 'R' && *tp == 'R' && sp-start > tp-target ||
+			*sp != *tp
+		)
 			return false;
 
 		++tp;
