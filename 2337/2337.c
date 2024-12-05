@@ -33,7 +33,7 @@ canChange(char *start, char *target)
 		++tp;
 	}
 
-	return true;
+	return !*sp && !*tp;
 }
 
 void
@@ -72,6 +72,15 @@ wronganswer1(void)
 	printf("ok: %d\n", ok); // 0
 }
 
+void
+azat1(void)
+{
+	printf("2337.c:/wronganswer1/\n");
+
+	bool ok = canChange("_L", "L_");
+	printf("ok: %d\n", ok); // 1
+}
+
 int
 main(void)
 {
@@ -79,6 +88,7 @@ main(void)
 	example2();
 	example3();
 	wronganswer1();
+	azat1();
 
 	return 0;
 }
