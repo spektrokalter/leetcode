@@ -33,6 +33,9 @@ canChange(char *start, char *target)
 		++tp;
 	}
 
+	while (*tp && *tp == '_')
+		++tp;
+
 	return !*sp && !*tp;
 }
 
