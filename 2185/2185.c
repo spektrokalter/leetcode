@@ -103,7 +103,7 @@ rtcontains(Rtnode *head, char *s)
 		return 0;
 
 	if (0 == strcmp(head->s, s))
-		return head->last;
+		return head->last + rtsum(head);
 
 	// Find first i such that head->s[i] != s[i].
 	//
@@ -194,12 +194,38 @@ wronganswer1(void)
 	printf("n: %d\n", n); // 7
 }
 
+void
+wronganswer2(void)
+{
+	printf("2185.c:/wronganswer2/\n");
+
+	char *words[] = {
+		"kttxeksggb", "vucqwew", "lyknscc", "mryl",
+		"vwarnwkfmd", "ivawxbntgs", "mylw", "namybmfy",
+		"uosag", "rzernqxyn", "puf", "hfwjnmvm", "jjfyd",
+		"xteybd", "v", "ywntwzn", "npsogop", "brgvlw",
+		"vewhi", "brk", "hheub", "zl", "vt", "bxjtjivep", "p",
+		"io", "xotulskjmt", "mctffonh", "pmeuqhoe", "ghktrtq",
+		"u", "ngnvwan", "pqmlvvhl", "enjf", "qomcejb",
+		"twgqww", "bnilyqy", "nc", "fttlodnz", "fya", "g",
+		"uoivsr", "gtxgcaf", "qs", "gkfl", "sdmacxf", "mzy",
+		"xjv", "yipc", "rctqugjjk", "myij", "xxg", "vyup",
+		"utqxplpsa", "imbteaczlc", "qfgdcz", "atfn", "pxcsg",
+		"f", "omukbiaudb", "uh", "uobwgt", "hgqipk",
+		"zunfzinenk", "i", "p", "pet", "fxai", "ortqpwkukg",
+		"rxgh", "ylfh",
+	};
+	int n = prefixCount(words, ARRAY_LEN(words), "ikwjoty");
+	printf("n: %d\n", n); // 0
+}
+
 int
 main(void)
 {
 	example1();
 	example2();
 	wronganswer1();
+	wronganswer2();
 
 	return 0;
 }
