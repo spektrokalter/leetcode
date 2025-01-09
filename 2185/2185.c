@@ -154,14 +154,22 @@ rtprint(Rtnode *head, int shift)
 int
 prefixCount(char **words, int nwords, char *pref)
 {
-	Rtnode *root = rtnew("/", 0);
+	int n = 0;
 
-	for (char **w = words; w != words+nwords; ++w)
-		rtins(&root->children[**w], *w);
+	for (char **w = words; w != words+nwords; ++w) {
+		char *pp = pref;
+		char *wp = *w;
 
-//	rtprint(root, 2);
+		while (*pp && *wp && *pp == *wp) {
+			++pp;
+			++wp;
+		}
 
-	return rtcontains(root->children[*pref], pref);
+		if (!*pp)
+			++n;
+	}
+
+	return n;
 }
 
 void
