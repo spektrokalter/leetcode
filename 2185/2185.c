@@ -152,13 +152,13 @@ rtprint(Rtnode *head, int shift)
 }
 
 int
-prefixCount(char **words, int nwords, char *pref)
+prefixCount(char **words, int nwords, const char *pref)
 {
 	int n = 0;
 
 	for (char **w = words; w != words+nwords; ++w) {
-		char *pp = pref;
-		char *wp = *w;
+		const char *pp = pref;
+		const char *wp = *w;
 
 		while (*pp && *wp && *pp == *wp) {
 			++pp;
