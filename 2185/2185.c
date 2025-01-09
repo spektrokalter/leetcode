@@ -103,7 +103,7 @@ rtcontains(Rtnode *head, char *s)
 		return 0;
 
 	if (0 == strcmp(head->s, s))
-		return head->last + rtsum(head);
+		return rtsum(head);
 
 	// Find first i such that head->s[i] != s[i].
 	//
