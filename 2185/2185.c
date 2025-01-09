@@ -114,7 +114,7 @@ rtcontains(Rtnode *head, char *s)
 	// head->s is fully a prefix of s.
 	//
 	if (!head->s[i])
-		return head->last + rtcontains(head->children[s[i]], s+i);
+		return rtcontains(head->children[s[i]], s+i);
 
 	// s is fully a prefix of head->s.
 	if (!s[i])
@@ -219,6 +219,48 @@ wronganswer2(void)
 	printf("n: %d\n", n); // 0
 }
 
+void
+wronganswer3(void)
+{
+	printf("2185.c:/wronganswer3/\n");
+
+	char *words[] = {
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh", "vbx",
+		"fsi", "sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "gqira", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
+		"sxyjellhlh", "sxyjellhlh"
+	};
+	int n = prefixCount(words, ARRAY_LEN(words), "sxyjellhlh");
+	printf("n: %d\n", n); // 92
+}
+
 int
 main(void)
 {
@@ -226,6 +268,7 @@ main(void)
 	example2();
 	wronganswer1();
 	wronganswer2();
+	wronganswer3();
 
 	return 0;
 }
