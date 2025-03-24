@@ -36,7 +36,7 @@ countDays(int days, int **meetings, int nmeetings, int *nnmeetings)
 	for (int **m = meetings; m != meetings+nmeetings; ++m) {
 
 		// ((1, 10) m=(5, 15)) or ((1, 10) m=(2, 8))
-		// else: ((1, 10) m=(20, 30))
+		// else: ((1, 10) m=(20, 30)) or ((1, 20) (5, 15) m=(10, 20))
 		//
 		if ((*m)[0] <= prev1) {
 
@@ -47,10 +47,15 @@ countDays(int days, int **meetings, int nmeetings, int *nnmeetings)
 
 			max1 = MAX(max1, (*m)[1]);
 		} else {
-			busy += (*m)[1] - (*m)[0] + 1;
-			max1 = (*m)[1];
+
+			// ((1, 10) m=(20, 30))
+			//
+			if ((*m)[1] > max1)
+				busy += (*m)[1] - (*m)[0] + 1;
+
+			max1 = MAX(max1, (*m)[1]);
 		}
-		printf("%d\n", busy);
+//		printf("%d\n", busy);
 
 		prev0 = (*m)[0];
 		prev1 = (*m)[1];
@@ -107,12 +112,23 @@ example3(void)
 	printf("3169.c:/^example3/	%d\n", available); // 0
 }
 
+void
+wronganswer1(void)
+{
+	int meetings[][2] = {{22, 31}, {7, 42}, {30, 46}, {9, 33}, {9, 18}, {23, 39}, {4, 8}, {18, 19}};
+	int **meetingsmem = mkarr(meetings, ARRAY_LEN(meetings), 2);
+
+	int available = countDays(50, meetingsmem, ARRAY_LEN(meetings), NULL);
+	printf("3169.c:/^wronganswer1/	%d\n", available); // 7
+}
+
 int
 main(void)
 {
 	example1();
 	example2();
 	example3();
+	wronganswer1();
 
 	return 0;
 }
