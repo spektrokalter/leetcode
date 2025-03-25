@@ -5,7 +5,6 @@
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 
 #define MAX(x, y) ((x)>(y) ? (x) : (y))
-#define MIN(x, y) ((x)<(y) ? (x) : (y))
 
 int
 cmpinterval(const void *vp1, const void *vp2)
@@ -24,7 +23,7 @@ countDays(int days, int **meetings, int nmeetings, int *nnmeetings)
 {
 	qsort(meetings, nmeetings, sizeof(*meetings), cmpinterval);
 
-	int prev0 = 0, prev1 = 0;
+	int prev1 = 0;
 
 	// max1, in the beginning of each iteration, represents
 	// max(meetings[][1]) of the previous iteration.
@@ -34,34 +33,22 @@ countDays(int days, int **meetings, int nmeetings, int *nnmeetings)
 	int busy = 0;
 
 	for (int **m = meetings; m != meetings+nmeetings; ++m) {
-
-		// ((1, 10) m=(5, 15)) or ((1, 10) m=(2, 8))
-		// else: ((1, 10) m=(20, 30)) or ((1, 20) (5, 15) m=(10, 20))
-		//
-		if ((*m)[0] <= prev1) {
-
-			// ((1, 10) m=(5, 15))
-			//
-			if ((*m)[1] > max1)
+		if ((*m)[0] <= prev1) { // ((1, 10) m=(5, 15)) or ((1, 10) m=(2, 8))
+			if ((*m)[1] > max1) // ((1, 10) m=(5, 15))
 				busy += (*m)[1] - max1;
-
-			max1 = MAX(max1, (*m)[1]);
-		} else {
-
-			// ((1, 10) m=(20, 30)) or ((1, 30) (10, 20) m=(25, 35))
-			//
+		} else { // ((1, 10) m=(20, 30)) or ((1, 20) (5, 15) m=(10, 20))
 			if ((*m)[1] > max1) {
-				if ((*m)[0] > max1)
+				if ((*m)[0] > max1) // ((1, 10) m=(20, 30))
 					busy += (*m)[1] - (*m)[0] + 1;
-				else
+				else // ((1, 30) (10, 20) m=(25, 35))
 					busy += (*m)[1] - max1;
 			}
-
-			max1 = MAX(max1, (*m)[1]);
 		}
-//		printf("(%d, %d), (%d, %d), %d, %d\n", (*m)[0], (*m)[1], prev0, prev1, max1, busy);
 
-		prev0 = (*m)[0];
+		max1 = MAX(max1, (*m)[1]);
+
+//		printf("(%d, %d), (, %d), %d, %d\n", (*m)[0], (*m)[1], prev1, max1, busy);
+
 		prev1 = (*m)[1];
 	}
 
