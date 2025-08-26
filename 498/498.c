@@ -13,25 +13,25 @@ findDiagonalOrder(int **mat, int nmat, const int *nnmat, int *nout)
 
 	int i = -1, j = 1;
 
-	while (abs(j) <= *nnmat) {
+	while (j <= *nnmat) {
 		*(p++) = mat[abs(i)-1][abs(j)-1];
 
 		++i;
 		++j;
 
-		if (abs(j) > *nnmat) {
+		if (j > *nnmat) {
 			j = -*nnmat;
 			i = -i + 2;
 		}
-		if (abs(i) < 1) {
+		if (i == 0) {
 			i = 1;
 			j = -j;
 		}
-		if (abs(i) > nmat) {
+		if (i > nmat) {
 			i = -nmat;
 			j = -j + 2;
 		}
-		if (abs(j) < 1) {
+		if (j == 0) {
 			j = 1;
 			i = -i;
 		}
