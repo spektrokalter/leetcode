@@ -91,24 +91,6 @@ shortestDistanceAfterQueries
 	return distances;
 }
 
-int **
-mkarr(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*arrp)[ncols] = arr;
-	for (int **pp = p; pp != p+nrows; ++pp) {
-		*pp = calloc(ncols, sizeof(**pp));
-		memcpy(*pp, *arrp, ncols * sizeof(**pp));
-		++arrp;
-	}
-
-	return p;
-}
-
 void
 arrprint(int *p, int len)
 {
@@ -123,12 +105,12 @@ example1(void)
 {
 	printf("3243.c:/example1/\n");
 
-	int queries[][2] = {{2, 4}, {0, 2}, {0, 4}};
+	int *queries[] = (int*[]){(int[]){2, 4}, (int[]){0, 2}, (int[]){0, 4}};
 	int cols[] = {2, 2, 2};
 
 	int ndistances = 0;
 	int *distances = shortestDistanceAfterQueries(
-		5, mkarr(queries, ARRAY_LEN(queries), 2), ARRAY_LEN(queries), cols, &ndistances
+		5, queries, ARRAY_LEN(queries), cols, &ndistances
 	);
 
 	printf("distances:\n");
@@ -140,12 +122,12 @@ example2(void)
 {
 	printf("3243.c:/example2/\n");
 
-	int queries[][2] = {{0, 3}, {0, 2}};
+	int *queries[] = (int*[]){(int[]){0, 3}, (int[]){0, 2}};
 	int cols[] = {2, 2};
 
 	int ndistances = 0;
 	int *distances = shortestDistanceAfterQueries(
-		4, mkarr(queries, ARRAY_LEN(queries), 2), ARRAY_LEN(queries), cols, &ndistances
+		4, queries, ARRAY_LEN(queries), cols, &ndistances
 	);
 
 	printf("distances:\n");

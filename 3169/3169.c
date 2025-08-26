@@ -46,51 +46,30 @@ countDays(int days, int **meetings, int nmeetings, int *nnmeetings)
 	return days - busy;
 }
 
-int **
-mkarr(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*arrp)[ncols] = arr;
-	for (int **pp = p; pp != p+nrows; ++pp) {
-		*pp = calloc(ncols, sizeof(**pp));
-		memcpy(*pp, *arrp, ncols * sizeof(**pp));
-		++arrp;
-	}
-
-	return p;
-}
-
 void
 example1(void)
 {
-	int meetings[][2] = {{5, 7}, {1, 3}, {9, 10}};
-	int **meetingsmem = mkarr(meetings, ARRAY_LEN(meetings), 2);
+	int *meetings[] = (int*[]){(int[]){5, 7}, (int[]){1, 3}, (int[]){9, 10}};
 
-	int available = countDays(10, meetingsmem, ARRAY_LEN(meetings), NULL);
+	int available = countDays(10, meetings, ARRAY_LEN(meetings), NULL);
 	printf("3169.c:/^example1/		%d\n", available); // 2
 }
 
 void
 example2(void)
 {
-	int meetings[][2] = {{2, 4}, {1, 3}};
-	int **meetingsmem = mkarr(meetings, ARRAY_LEN(meetings), 2);
+	int *meetings[] = (int*[]){(int[]){2, 4}, (int[]){1, 3}};
 
-	int available = countDays(5, meetingsmem, ARRAY_LEN(meetings), NULL);
+	int available = countDays(5, meetings, ARRAY_LEN(meetings), NULL);
 	printf("3169.c:/^example2/		%d\n", available); // 1
 }
 
 void
 example3(void)
 {
-	int meetings[][2] = {{1, 6}};
-	int **meetingsmem = mkarr(meetings, ARRAY_LEN(meetings), 2);
+	int *meetings[] = (int*[]){(int[]){1, 6}};
 
-	int available = countDays(6, meetingsmem, ARRAY_LEN(meetings), NULL);
+	int available = countDays(6, meetings, ARRAY_LEN(meetings), NULL);
 	printf("3169.c:/^example3/		%d\n", available); // 0
 }
 
@@ -106,10 +85,13 @@ example3(void)
 void
 wronganswer1(void)
 {
-	int meetings[][2] = {{22, 31}, {7, 42}, {30, 46}, {9, 33}, {9, 18}, {23, 39}, {4, 8}, {18, 19}};
-	int **meetingsmem = mkarr(meetings, ARRAY_LEN(meetings), 2);
+	int *meetings[] = (int*[]){
+		(int[]){22, 31}, (int[]){7, 42}, (int[]){30, 46},
+		(int[]){9, 33}, (int[]){9, 18}, (int[]){23, 39},
+		(int[]){4, 8}, (int[]){18, 19},
+	};
 
-	int available = countDays(50, meetingsmem, ARRAY_LEN(meetings), NULL);
+	int available = countDays(50, meetings, ARRAY_LEN(meetings), NULL);
 	printf("3169.c:/^wronganswer1/	%d\n", available); // 7
 }
 
@@ -126,10 +108,13 @@ wronganswer1(void)
 void
 wronganswer2(void)
 {
-	int meetings[][2] = {{37, 40}, {16, 19}, {20, 25}, {3, 55}, {16, 38}, {2, 44}, {54, 58}, {14, 24}, {13, 21}};
-	int **meetingsmem = mkarr(meetings, ARRAY_LEN(meetings), 2);
+	int *meetings[] = (int*[]){
+		(int[]){37, 40}, (int[]){16, 19}, (int[]){20, 25},
+		(int[]){3, 55}, (int[]){16, 38}, (int[]){2, 44},
+		(int[]){54, 58}, (int[]){14, 24}, (int[]){13, 21},
+	};
 
-	int available = countDays(65, meetingsmem, ARRAY_LEN(meetings), NULL);
+	int available = countDays(65, meetings, ARRAY_LEN(meetings), NULL);
 	printf("3169.c:/^wronganswer2/	%d\n", available); // 8
 }
 

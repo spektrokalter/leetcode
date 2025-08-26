@@ -29,37 +29,18 @@ maxMatrixSum(int **matrix, int rows, int *cols)
 	return sum;
 }
 
-int **
-mkarr
-	(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*r)[ncols] = arr;
-	for (int **q = p; q != p+nrows; ++q) {
-		*q = calloc(ncols, sizeof(**q));
-		memcpy(*q, *r, ncols * sizeof(**q));
-		++r;
-	}
-
-	return p;
-}
-
 void
 example1(void)
 {
 	printf("1975.c:/example1/\n");
 
-	int arr[][2] = {
-		{1, -1},
-		{-1, 1},
+	int *arr[] = (int*[]){
+		(int[]){1, -1},
+		(int[]){-1, 1},
 	};
 	int cols[] = {2, 2};
 
-	int sum = maxMatrixSum(mkarr(arr, 2, 2), 2, cols);
+	int sum = maxMatrixSum(arr, 2, cols);
 	printf("sum: %d\n", sum); // 4
 }
 
@@ -68,14 +49,14 @@ example2(void)
 {
 	printf("1975.c:/example2/\n");
 
-	int arr[][3] = {
-		{1, 2, 3},
-		{-1, -2, -3},
-		{1, 2, 3},
+	int *arr[] = (int*[]){
+		(int[]){1, 2, 3},
+		(int[]){-1, -2, -3},
+		(int[]){1, 2, 3},
 	};
 	int cols[] = {3, 3, 3};
 
-	int sum = maxMatrixSum(mkarr(arr, 3, 3), 3, cols);
+	int sum = maxMatrixSum(arr, 3, cols);
 	printf("sum: %d\n", sum); // 16
 }
 
@@ -84,14 +65,14 @@ wronganswer1(void)
 {
 	printf("1975.c:/wronganswer1/\n");
 
-	int arr[][3] = {
-		{-1, 0, -1},
-		{-2, 1, 3},
-		{3, 2, 2},
+	int *arr[] = (int*[]){
+		(int[]){-1, 0, -1},
+		(int[]){-2, 1, 3},
+		(int[]){3, 2, 2},
 	};
 	int cols[] = {3, 3, 3};
 
-	int sum = maxMatrixSum(mkarr(arr, 3, 3), 3, cols);
+	int sum = maxMatrixSum(arr, 3, cols);
 	printf("sum: %d\n", sum); // 15
 }
 
@@ -100,14 +81,14 @@ wronganswer2(void)
 {
 	printf("1975.c:/wronganswer2/\n");
 
-	int arr[][3] = {
-		{-3, 0, 0},
-		{0, 0, 0},
-		{0, 3, 2},
+	int *arr[] = (int*[]){
+		(int[]){-3, 0, 0},
+		(int[]){0, 0, 0},
+		(int[]){0, 3, 2},
 	};
 	int cols[] = {3, 3, 3};
 
-	int sum = maxMatrixSum(mkarr(arr, 3, 3), 3, cols);
+	int sum = maxMatrixSum(arr, 3, cols);
 	printf("sum: %d\n", sum); // 8
 }
 
@@ -116,14 +97,14 @@ wronganswer3(void)
 {
 	printf("1975.c:/wronganswer3/\n");
 
-	int arr[][3] = {
-		{9, -3, -4},
-		{-4, -1, -3},
-		{-6, -3, -3},
+	int *arr[] = (int*[]){
+		(int[]){9, -3, -4},
+		(int[]){-4, -1, -3},
+		(int[]){-6, -3, -3},
 	};
 	int cols[] = {3, 3, 3};
 
-	int sum = maxMatrixSum(mkarr(arr, 3, 3), 3, cols);
+	int sum = maxMatrixSum(arr, 3, cols);
 	printf("sum: %d\n", sum); // 36
 }
 
@@ -132,14 +113,14 @@ wronganswer4(void)
 {
 	printf("1975.c:/wronganswer4/\n");
 
-	int arr[][3] = {
-		{2, 9, 3},
-		{5, 4, -4},
-		{1, 7, 1},
+	int *arr[] = (int*[]){
+		(int[]){2, 9, 3},
+		(int[]){5, 4, -4},
+		(int[]){1, 7, 1},
 	};
 	int cols[] = {3, 3, 3};
 
-	int sum = maxMatrixSum(mkarr(arr, 3, 3), 3, cols);
+	int sum = maxMatrixSum(arr, 3, cols);
 	printf("sum: %d\n", sum); // 34
 }
 

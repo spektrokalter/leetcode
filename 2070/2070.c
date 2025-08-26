@@ -121,35 +121,17 @@ maximumBeauty(int **items, int nitems, int *mitems, int *queries, int nqueries, 
 	return answer;
 }
 
-int **
-mkarr
-	(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*r)[ncols] = arr;
-	for (int **q = p; q != p+nrows; ++q) {
-		*q = calloc(ncols, sizeof(**q));
-		memcpy(*q, *r, ncols * sizeof(**q));
-		++r;
-	}
-
-	return p;
-}
-
 void
 example1(void)
 {
-	int items[][2] = {{1, 2}, {3, 2}, {2, 4}, {5, 6}, {3, 5}};
+	int *items[] = (int*[]){
+		(int[]){1, 2}, (int[]){3, 2}, (int[]){2, 4},
+		(int[]){5, 6}, (int[]){3, 5},
+	};
 	int queries[] = {1, 2, 3, 4, 5, 6};
 	int nanswer = 0;
 
-	int **itemsp = mkarr(items, ARRAY_LEN(items), 2);
-
-	int *answer = maximumBeauty(itemsp, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
+	int *answer = maximumBeauty(items, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
 
 	printf("2070.c:/example1/\n");
 	arrprint(answer, nanswer); // 2, 4, 5, 5, 6, 6
@@ -158,13 +140,11 @@ example1(void)
 void
 example2(void)
 {
-	int items[][2] = {{1, 2}, {1, 2}, {1, 3}, {1, 4}};
+	int *items[] = (int*[]){(int[]){1, 2}, (int[]){1, 2}, (int[]){1, 3}, (int[]){1, 4}};
 	int queries[] = {1};
 	int nanswer = 0;
 
-	int **itemsp = mkarr(items, ARRAY_LEN(items), 2);
-
-	int *answer = maximumBeauty(itemsp, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
+	int *answer = maximumBeauty(items, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
 
 	printf("2070.c:/example2/\n");
 	arrprint(answer, nanswer); // 4
@@ -173,13 +153,11 @@ example2(void)
 void
 example3(void)
 {
-	int items[][2] = {{10, 1000}};
+	int *items[] = (int*[]){(int[]){10, 1000}};
 	int queries[] = {5};
 	int nanswer = 0;
 
-	int **itemsp = mkarr(items, ARRAY_LEN(items), 2);
-
-	int *answer = maximumBeauty(itemsp, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
+	int *answer = maximumBeauty(items, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
 
 	printf("2070.c:/example3/\n");
 	arrprint(answer, nanswer); // 0

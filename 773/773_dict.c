@@ -147,33 +147,14 @@ slidingPuzzle(int **board, int rows, int *cols)
 		return e->val - 1;
 }
 
-int **
-mkarr
-	(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*r)[ncols] = arr;
-	for (int **q = p; q != p+nrows; ++q) {
-		*q = calloc(ncols, sizeof(**q));
-		memcpy(*q, *r, ncols * sizeof(**q));
-		++r;
-	}
-
-	return p;
-}
-
 void
 example1(void)
 {
 	printf("773.c:/example1/\n");
-	int arr[][3] = {{1, 2, 3}, {4, 0, 5}};
+	int *arr[] = (int*[]){(int[]){1, 2, 3}, (int[]){4, 0, 5}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(mkarr(arr, 2, 3), 2, cols);
+	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
 	printf("moves: %d\n", moves); // 1
 }
 
@@ -181,10 +162,10 @@ void
 example2(void)
 {
 	printf("773.c:/example2/\n");
-	int arr[][3] = {{1, 2, 3}, {5, 4, 0}};
+	int *arr[] = (int*[]){(int[]){1, 2, 3}, (int[]){5, 4, 0}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(mkarr(arr, 2, 3), 2, cols);
+	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
 	printf("moves: %d\n", moves); // -1
 }
 
@@ -192,10 +173,10 @@ void
 example3(void)
 {
 	printf("773.c:/example3/\n");
-	int arr[][3] = {{4, 1, 2}, {5, 0, 3}};
+	int *arr[] = (int*[]){(int[]){4, 1, 2}, (int[]){5, 0, 3}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(mkarr(arr, 2, 3), 2, cols);
+	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
 	printf("moves: %d\n", moves); // 5
 }
 
@@ -203,10 +184,10 @@ void
 wronganswer1(void)
 {
 	printf("773.c:/wronganswer1/\n");
-	int arr[][3] = {{3, 2, 4}, {1, 5, 0}};
+	int *arr[] = (int*[]){(int[]){3, 2, 4}, (int[]){1, 5, 0}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(mkarr(arr, 2, 3), 2, cols);
+	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
 	printf("moves: %d\n", moves); // 14
 }
 

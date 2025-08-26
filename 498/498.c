@@ -40,24 +40,6 @@ findDiagonalOrder(int **mat, int nmat, const int *nnmat, int *nout)
 	return out;
 }
 
-int **
-mkarr(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*arrp)[ncols] = arr;
-	for (int **pp = p; pp != p+nrows; ++pp) {
-		*pp = calloc(ncols, sizeof(**pp));
-		memcpy(*pp, *arrp, ncols * sizeof(**pp));
-		++arrp;
-	}
-
-	return p;
-}
-
 void
 arrprint(int *p, int len)
 {
@@ -71,14 +53,14 @@ void
 example1(void)
 {
 	const int nnmat = 3;
-	int mat[][nnmat] = {
-		{1, 2, 3},
-		{4, 5, 6},
-		{7, 8, 9},
+	int *mat[] = (int*[]){
+		(int[]){1, 2, 3},
+		(int[]){4, 5, 6},
+		(int[]){7, 8, 9},
 	};
 
 	int narr = 0;
-	int *arr = findDiagonalOrder(mkarr(mat, nelem(mat), nnmat), nelem(mat), &nnmat, &narr);
+	int *arr = findDiagonalOrder(mat, nelem(mat), &nnmat, &narr);
 
 	print("example1\n");
 	arrprint(arr, narr);
@@ -88,13 +70,13 @@ void
 example2(void)
 {
 	const int nnmat = 2;
-	int mat[][nnmat] = {
-		{1, 2},
-		{3, 4},
+	int *mat[] = (int*[]){
+		(int[]){1, 2},
+		(int[]){3, 4},
 	};
 
 	int narr = 0;
-	int *arr = findDiagonalOrder(mkarr(mat, nelem(mat), nnmat), nelem(mat), &nnmat, &narr);
+	int *arr = findDiagonalOrder(mat, nelem(mat), &nnmat, &narr);
 
 	print("example2\n");
 	arrprint(arr, narr);
@@ -104,13 +86,13 @@ void
 wronganswer1(void)
 {
 	const int nnmat = 3;
-	int mat[][nnmat] = {
-		{2, 5, 8},
-		{4, 0, -1},
+	int *mat[] = (int*[]){
+		(int[]){2, 5, 8},
+		(int[]){4, 0, -1},
 	};
 
 	int narr = 0;
-	int *arr = findDiagonalOrder(mkarr(mat, nelem(mat), nnmat), nelem(mat), &nnmat, &narr);
+	int *arr = findDiagonalOrder(mat, nelem(mat), &nnmat, &narr);
 
 	print("wronganswer1\n");
 	arrprint(arr, narr);

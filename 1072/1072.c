@@ -164,37 +164,18 @@ maxEqualRowsAfterFlips(int **matrix, int rows, int *cols)
 	return rtmaxcount(root);
 }
 
-int **
-mkarr
-	(void *vp, int nrows, int ncols)
-{
-	int (*arr)[ncols] = vp;
-
-	int **p;
-	p = calloc(nrows, sizeof(*p));
-
-	int (*r)[ncols] = arr;
-	for (int **q = p; q != p+nrows; ++q) {
-		*q = calloc(ncols, sizeof(**q));
-		memcpy(*q, *r, ncols * sizeof(**q));
-		++r;
-	}
-
-	return p;
-}
-
 void
 example1(void)
 {
 	printf("1072.c:/example1/\n");
 
-	int arr[][2] = {
-		{0, 1},
-		{1, 1},
+	int *arr[] = (int*[]){
+		(int[]){0, 1},
+		(int[]){1, 1},
 	};
 	int cols[] = {2, 2};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 2), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 1
 }
 
@@ -203,13 +184,13 @@ example2(void)
 {
 	printf("1072.c:/example2/\n");
 
-	int arr[][2] = {
-		{0, 1},
-		{1, 0},
+	int *arr[] = (int*[]){
+		(int[]){0, 1},
+		(int[]){1, 0},
 	};
 	int cols[] = {2, 2};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 2), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -218,14 +199,14 @@ example3(void)
 {
 	printf("1072.c:/example3/\n");
 
-	int arr[][3] = {
-		{0, 0, 0},
-		{0, 0, 1},
-		{1, 1, 0},
+	int *arr[] = (int*[]){
+		(int[]){0, 0, 0},
+		(int[]){0, 0, 1},
+		(int[]){1, 1, 0},
 	};
 	int cols[] = {3, 3, 3};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 3), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -234,14 +215,14 @@ solution1(void)
 {
 	printf("1072.c:/solution1/\n");
 
-	int arr[][3] = {
-		{0, 1, 0},
-		{0, 1, 0},
-		{1, 1, 0},
+	int *arr[] = (int*[]){
+		(int[]){0, 1, 0},
+		(int[]){0, 1, 0},
+		(int[]){1, 1, 0},
 	};
 	int cols[] = {3, 3, 3};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 3), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -250,15 +231,15 @@ solution2(void)
 {
 	printf("1072.c:/solution2/\n");
 
-	int arr[][4] = {
-		{0, 1, 0, 0},
-		{1, 0, 1, 1},
-		{0, 1, 0, 0},
-		{0, 1, 1, 0},
+	int *arr[] = (int*[]){
+		(int[]){0, 1, 0, 0},
+		(int[]){1, 0, 1, 1},
+		(int[]){0, 1, 0, 0},
+		(int[]){0, 1, 1, 0},
 	};
 	int cols[] = {4, 4, 4, 4};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 4), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 3
 }
 
@@ -267,16 +248,16 @@ wronganswer1(void)
 {
 	printf("1072.c:/wronganswer1/\n");
 
-	int arr[][11] = {
-		{1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1},
-		{1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0},
-		{1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1},
-		{1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0},
-		{1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1},
+	int *arr[] = (int*[]){
+		(int[]){1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1},
+		(int[]){1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0},
+		(int[]){1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1},
+		(int[]){1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0},
+		(int[]){1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1},
 	};
 	int cols[] = {11, 11, 11, 11, 11};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 11), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -285,21 +266,21 @@ wronganswer2(void)
 {
 	printf("1072.c:/wronganswer2/\n");
 
-	int arr[][7] = {
-		{1, 1, 1, 0, 1, 1, 0},
-		{0, 1, 0, 1, 1, 0, 0},
-		{1, 1, 0, 1, 0, 1, 0},
-		{1, 0, 0, 0, 0, 1, 1},
-		{0, 1, 1, 0, 0, 1, 1},
-		{1, 0, 0, 0, 1, 1, 0},
-		{0, 1, 0, 1, 0, 1, 0},
-		{1, 0, 0, 1, 0, 1, 0},
-		{0, 1, 0, 1, 0, 1, 1},
-		{1, 1, 1, 1, 1, 1, 0},
+	int *arr[] = (int*[]){
+		(int[]){1, 1, 1, 0, 1, 1, 0},
+		(int[]){0, 1, 0, 1, 1, 0, 0},
+		(int[]){1, 1, 0, 1, 0, 1, 0},
+		(int[]){1, 0, 0, 0, 0, 1, 1},
+		(int[]){0, 1, 1, 0, 0, 1, 1},
+		(int[]){1, 0, 0, 0, 1, 1, 0},
+		(int[]){0, 1, 0, 1, 0, 1, 0},
+		(int[]){1, 0, 0, 1, 0, 1, 0},
+		(int[]){0, 1, 0, 1, 0, 1, 1},
+		(int[]){1, 1, 1, 1, 1, 1, 0},
 	};
 	int cols[] = {7, 7, 7, 7, 7, 7, 7, 7, 7, 7};
 
-	int equalrows = maxEqualRowsAfterFlips(mkarr(arr, ARRAY_LEN(arr), 7), ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 1
 }
 
