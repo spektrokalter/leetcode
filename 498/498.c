@@ -52,6 +52,8 @@ arrprint(int *p, int len)
 void
 example1(void)
 {
+	print("498.c:/example1/\n");
+
 	const int nnmat = 3;
 	int *mat[] = (int*[]){
 		(int[]){1, 2, 3},
@@ -62,13 +64,14 @@ example1(void)
 	int narr = 0;
 	int *arr = findDiagonalOrder(mat, nelem(mat), &nnmat, &narr);
 
-	print("example1\n");
 	arrprint(arr, narr);
 }
 
 void
 example2(void)
 {
+	print("498.c:/example2/\n");
+
 	const int nnmat = 2;
 	int *mat[] = (int*[]){
 		(int[]){1, 2},
@@ -78,13 +81,14 @@ example2(void)
 	int narr = 0;
 	int *arr = findDiagonalOrder(mat, nelem(mat), &nnmat, &narr);
 
-	print("example2\n");
 	arrprint(arr, narr);
 }
 
 void
 wronganswer1(void)
 {
+	print("498.c:/wronganswer1/\n");
+
 	const int nnmat = 3;
 	int *mat[] = (int*[]){
 		(int[]){2, 5, 8},
@@ -94,7 +98,6 @@ wronganswer1(void)
 	int narr = 0;
 	int *arr = findDiagonalOrder(mat, nelem(mat), &nnmat, &narr);
 
-	print("wronganswer1\n");
 	arrprint(arr, narr);
 }
 
