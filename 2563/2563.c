@@ -54,7 +54,7 @@ countFairPairs(int *p, int len, int lower, int upper)
 void
 example1(void)
 {
-	printf("2563.c:/example1/\n");
+	printf("2563.c:/^example1/\n");
 
 	int arr[] = {0, 1, 7, 4, 4, 5};
 	long long pairs = countFairPairs(arr, nelem(arr), 3, 6);
@@ -64,7 +64,7 @@ example1(void)
 void
 example2(void)
 {
-	printf("2563.c:/example2/\n");
+	printf("2563.c:/^example2/\n");
 
 	int arr[] = {1, 7, 9, 2, 5};
 	long long pairs = countFairPairs(arr, nelem(arr), 11, 11);
@@ -74,7 +74,7 @@ example2(void)
 void
 wronganswer1(void)
 {
-	printf("2563.c:/wronganswer1/\n");
+	printf("2563.c:/^wronganswer1/\n");
 
 	int arr[] = {0, 0, 0, 0, 0, 0};
 	long long pairs = countFairPairs(arr, nelem(arr), 0, 0);

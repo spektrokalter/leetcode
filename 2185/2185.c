@@ -29,7 +29,7 @@ prefixCount(char **words, int nwords, const char *pref)
 void
 example1(void)
 {
-	printf("2185.c:/example1/\n");
+	printf("2185.c:/^example1/\n");
 
 	char *words[] = {"pay", "attention", "practice", "attend"};
 	int n = prefixCount(words, nelem(words), "at");
@@ -39,7 +39,7 @@ example1(void)
 void
 example2(void)
 {
-	printf("2185.c:/example2/\n");
+	printf("2185.c:/^example2/\n");
 
 	char *words[] = {"leetcode", "win", "loops", "success"};
 	int n = prefixCount(words, nelem(words), "code");
@@ -49,7 +49,7 @@ example2(void)
 void
 wronganswer1(void)
 {
-	printf("2185.c:/example2/\n");
+	printf("2185.c:/^example2/\n");
 
 	char *words[] = {"lewsmb", "lewrydnve", "lewqqm", "lewec", "lewn", "lewb", "lewedb"};
 	int n = prefixCount(words, nelem(words), "lew");
@@ -59,7 +59,7 @@ wronganswer1(void)
 void
 wronganswer2(void)
 {
-	printf("2185.c:/wronganswer2/\n");
+	printf("2185.c:/^wronganswer2/\n");
 
 	char *words[] = {
 		"kttxeksggb", "vucqwew", "lyknscc", "mryl",
@@ -84,7 +84,7 @@ wronganswer2(void)
 void
 wronganswer3(void)
 {
-	printf("2185.c:/wronganswer3/\n");
+	printf("2185.c:/^wronganswer3/\n");
 
 	char *words[] = {
 		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",

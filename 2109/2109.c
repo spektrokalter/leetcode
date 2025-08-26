@@ -32,7 +32,7 @@ addSpaces(char *s, int *spaces, int nspaces)
 void
 example1(void)
 {
-	printf("2109.c:/example1/\n");
+	printf("2109.c:/^example1/\n");
 
 	int spaces[] = {8, 13, 15};
 
@@ -43,7 +43,7 @@ example1(void)
 void
 wronganswer1(void)
 {
-	printf("2109.c:/wronganswer1/\n");
+	printf("2109.c:/^wronganswer1/\n");
 
 	int spaces[] = {1, 5, 7, 9};
 

@@ -103,7 +103,7 @@ arrprint(int *p, int len)
 void
 example1(void)
 {
-	printf("3243.c:/example1/\n");
+	printf("3243.c:/^example1/\n");
 
 	int *queries[] = (int*[]){(int[]){2, 4}, (int[]){0, 2}, (int[]){0, 4}};
 	int cols[] = {2, 2, 2};
@@ -120,7 +120,7 @@ example1(void)
 void
 example2(void)
 {
-	printf("3243.c:/example2/\n");
+	printf("3243.c:/^example2/\n");
 
 	int *queries[] = (int*[]){(int[]){0, 3}, (int[]){0, 2}};
 	int cols[] = {2, 2};

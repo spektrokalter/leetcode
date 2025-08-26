@@ -69,7 +69,7 @@ void
 example1
 	(void)
 {
-	printf("2601.c:/example1/\n");
+	printf("2601.c:/^example1/\n");
 	int arr[] = {4, 9, 6, 10};
 	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 1
@@ -79,7 +79,7 @@ void
 example2
 	(void)
 {
-	printf("2601.c:/example2/\n");
+	printf("2601.c:/^example2/\n");
 	int arr[] = {6, 8, 11, 12};
 	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 1
@@ -89,7 +89,7 @@ void
 example3
 	(void)
 {
-	printf("2601.c:/example3/\n");
+	printf("2601.c:/^example3/\n");
 	int arr[] = {5, 8, 3};
 	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 0
@@ -99,7 +99,7 @@ void
 wronganswer1
 	(void)
 {
-	printf("2601.c:/wronganswer1/\n");
+	printf("2601.c:/^wronganswer1/\n");
 	int arr[] = {8, 19, 3, 4, 9};
 	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 1

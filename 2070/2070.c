@@ -133,7 +133,7 @@ example1(void)
 
 	int *answer = maximumBeauty(items, nelem(items), NULL, queries, nelem(queries), &nanswer);
 
-	printf("2070.c:/example1/\n");
+	printf("2070.c:/^example1/\n");
 	arrprint(answer, nanswer); // 2, 4, 5, 5, 6, 6
 }
 
@@ -146,7 +146,7 @@ example2(void)
 
 	int *answer = maximumBeauty(items, nelem(items), NULL, queries, nelem(queries), &nanswer);
 
-	printf("2070.c:/example2/\n");
+	printf("2070.c:/^example2/\n");
 	arrprint(answer, nanswer); // 4
 }
 
@@ -159,7 +159,7 @@ example3(void)
 
 	int *answer = maximumBeauty(items, nelem(items), NULL, queries, nelem(queries), &nanswer);
 
-	printf("2070.c:/example3/\n");
+	printf("2070.c:/^example3/\n");
 	arrprint(answer, nanswer); // 0
 }
 

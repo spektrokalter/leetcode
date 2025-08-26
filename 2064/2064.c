@@ -45,7 +45,7 @@ minimizedMaximum(int n, int *quantities, int qlen)
 void
 example1(void)
 {
-	printf("2064.c:/example1/\n");
+	printf("2064.c:/^example1/\n");
 
 	int quantities[] = {11, 6};
 	int x = minimizedMaximum(6, quantities, nelem(quantities));
@@ -55,7 +55,7 @@ example1(void)
 void
 example2(void)
 {
-	printf("2064.c:/example2/\n");
+	printf("2064.c:/^example2/\n");
 
 	int quantities[] = {15, 10, 10};
 	int x = minimizedMaximum(7, quantities, nelem(quantities));
@@ -65,7 +65,7 @@ example2(void)
 void
 example3(void)
 {
-	printf("2064.c:/example3/\n");
+	printf("2064.c:/^example3/\n");
 
 	int quantities[] = {100000};
 	int x = minimizedMaximum(1, quantities, nelem(quantities));
@@ -75,7 +75,7 @@ example3(void)
 void
 wronganswer1(void)
 {
-	printf("2064.c:/wronganswer1/\n");
+	printf("2064.c:/^wronganswer1/\n");
 
 	int quantities[] = {5, 7};
 	int x = minimizedMaximum(2, quantities, nelem(quantities));

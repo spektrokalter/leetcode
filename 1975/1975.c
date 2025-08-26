@@ -32,7 +32,7 @@ maxMatrixSum(int **matrix, int rows, int *cols)
 void
 example1(void)
 {
-	printf("1975.c:/example1/\n");
+	printf("1975.c:/^example1/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){1, -1},
@@ -47,7 +47,7 @@ example1(void)
 void
 example2(void)
 {
-	printf("1975.c:/example2/\n");
+	printf("1975.c:/^example2/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){1, 2, 3},
@@ -63,7 +63,7 @@ example2(void)
 void
 wronganswer1(void)
 {
-	printf("1975.c:/wronganswer1/\n");
+	printf("1975.c:/^wronganswer1/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){-1, 0, -1},
@@ -79,7 +79,7 @@ wronganswer1(void)
 void
 wronganswer2(void)
 {
-	printf("1975.c:/wronganswer2/\n");
+	printf("1975.c:/^wronganswer2/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){-3, 0, 0},
@@ -95,7 +95,7 @@ wronganswer2(void)
 void
 wronganswer3(void)
 {
-	printf("1975.c:/wronganswer3/\n");
+	printf("1975.c:/^wronganswer3/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){9, -3, -4},
@@ -111,7 +111,7 @@ wronganswer3(void)
 void
 wronganswer4(void)
 {
-	printf("1975.c:/wronganswer4/\n");
+	printf("1975.c:/^wronganswer4/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){2, 9, 3},

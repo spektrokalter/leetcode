@@ -52,7 +52,7 @@ arrprint(int *p, int len)
 void
 example1(void)
 {
-	print("498.c:/example1/\n");
+	print("498.c:/^example1/\n");
 
 	const int nnmat = 3;
 	int *mat[] = (int*[]){
@@ -70,7 +70,7 @@ example1(void)
 void
 example2(void)
 {
-	print("498.c:/example2/\n");
+	print("498.c:/^example2/\n");
 
 	const int nnmat = 2;
 	int *mat[] = (int*[]){
@@ -87,7 +87,7 @@ example2(void)
 void
 wronganswer1(void)
 {
-	print("498.c:/wronganswer1/\n");
+	print("498.c:/^wronganswer1/\n");
 
 	const int nnmat = 3;
 	int *mat[] = (int*[]){

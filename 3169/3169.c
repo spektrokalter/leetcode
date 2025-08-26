@@ -52,7 +52,7 @@ example1(void)
 	int *meetings[] = (int*[]){(int[]){5, 7}, (int[]){1, 3}, (int[]){9, 10}};
 
 	int available = countDays(10, meetings, nelem(meetings), NULL);
-	printf("3169.c:/^example1/		%d\n", available); // 2
+	printf("3169.c:/^^example1/		%d\n", available); // 2
 }
 
 void
@@ -61,7 +61,7 @@ example2(void)
 	int *meetings[] = (int*[]){(int[]){2, 4}, (int[]){1, 3}};
 
 	int available = countDays(5, meetings, nelem(meetings), NULL);
-	printf("3169.c:/^example2/		%d\n", available); // 1
+	printf("3169.c:/^^example2/		%d\n", available); // 1
 }
 
 void
@@ -70,7 +70,7 @@ example3(void)
 	int *meetings[] = (int*[]){(int[]){1, 6}};
 
 	int available = countDays(6, meetings, nelem(meetings), NULL);
-	printf("3169.c:/^example3/		%d\n", available); // 0
+	printf("3169.c:/^^example3/		%d\n", available); // 0
 }
 
 // 4, 8 → 8-4+1 = 5
@@ -92,7 +92,7 @@ wronganswer1(void)
 	};
 
 	int available = countDays(50, meetings, nelem(meetings), NULL);
-	printf("3169.c:/^wronganswer1/	%d\n", available); // 7
+	printf("3169.c:/^^wronganswer1/	%d\n", available); // 7
 }
 
 // 2, 44 → 44-2+1 = 43
@@ -115,7 +115,7 @@ wronganswer2(void)
 	};
 
 	int available = countDays(65, meetings, nelem(meetings), NULL);
-	printf("3169.c:/^wronganswer2/	%d\n", available); // 8
+	printf("3169.c:/^^wronganswer2/	%d\n", available); // 8
 }
 
 int

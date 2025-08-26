@@ -76,7 +76,7 @@ void
 example1
 	(void)
 {
-	printf("main.c:/example1/\n");
+	printf("main.c:/^example1/\n");
 	int arr[] = {1, 2, 3};
 	int len = minimumSubarrayLength(arr, nelem(arr), 2);
 	printf("len: %d\n", len); // 1
@@ -86,7 +86,7 @@ void
 example2
 	(void)
 {
-	printf("main.c:/example2/\n");
+	printf("main.c:/^example2/\n");
 	int arr[] = {2, 1, 8};
 	int len = minimumSubarrayLength(arr, nelem(arr), 10);
 	printf("len: %d\n", len); // 3
@@ -96,7 +96,7 @@ void
 example3
 	(void)
 {
-	printf("main.c:/example3/\n");
+	printf("main.c:/^example3/\n");
 	int arr[] = {1, 2};
 	int len = minimumSubarrayLength(arr, nelem(arr), 0);
 	printf("len: %d\n", len); // 1
@@ -106,7 +106,7 @@ void
 wronganswer1
 	(void)
 {
-	printf("main.c:/wronganswer1/\n");
+	printf("main.c:/^wronganswer1/\n");
 	int arr[] = {1, 2, 32, 21};
 	int len = minimumSubarrayLength(arr, nelem(arr), 55);
 	printf("len: %d\n", len); // 3

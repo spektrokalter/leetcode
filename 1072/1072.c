@@ -167,7 +167,7 @@ maxEqualRowsAfterFlips(int **matrix, int rows, int *cols)
 void
 example1(void)
 {
-	printf("1072.c:/example1/\n");
+	printf("1072.c:/^example1/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){0, 1},
@@ -182,7 +182,7 @@ example1(void)
 void
 example2(void)
 {
-	printf("1072.c:/example2/\n");
+	printf("1072.c:/^example2/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){0, 1},
@@ -197,7 +197,7 @@ example2(void)
 void
 example3(void)
 {
-	printf("1072.c:/example3/\n");
+	printf("1072.c:/^example3/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){0, 0, 0},
@@ -213,7 +213,7 @@ example3(void)
 void
 solution1(void)
 {
-	printf("1072.c:/solution1/\n");
+	printf("1072.c:/^solution1/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){0, 1, 0},
@@ -229,7 +229,7 @@ solution1(void)
 void
 solution2(void)
 {
-	printf("1072.c:/solution2/\n");
+	printf("1072.c:/^solution2/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){0, 1, 0, 0},
@@ -246,7 +246,7 @@ solution2(void)
 void
 wronganswer1(void)
 {
-	printf("1072.c:/wronganswer1/\n");
+	printf("1072.c:/^wronganswer1/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1},
@@ -264,7 +264,7 @@ wronganswer1(void)
 void
 wronganswer2(void)
 {
-	printf("1072.c:/wronganswer2/\n");
+	printf("1072.c:/^wronganswer2/\n");
 
 	int *arr[] = (int*[]){
 		(int[]){1, 1, 1, 0, 1, 1, 0},

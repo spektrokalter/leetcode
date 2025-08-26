@@ -26,7 +26,7 @@ areaOfMaxDiagonal(int **dim, int ndim, int *nndim)
 void
 example1(void)
 {
-	print("3000.c:/example1/\n");
+	print("3000.c:/^example1/\n");
 
 	int *dim[] = (int*[]){(int[]){9, 3}, (int[]){8, 6}};
 
@@ -38,7 +38,7 @@ example1(void)
 void
 example2(void)
 {
-	print("3000.c:/example2/\n");
+	print("3000.c:/^example2/\n");
 
 	int *dim[] = (int*[]){(int[]){3, 4}, (int[]){4, 3}};
 
@@ -50,7 +50,7 @@ example2(void)
 void
 wonganswer1(void)
 {
-	print("3000.c:/wonganswer1/\n");
+	print("3000.c:/^wonganswer1/\n");
 
 	int *dim[] = (int*[]){
 		(int[]){6, 5}, (int[]){8, 6}, (int[]){2, 10},
