@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 #define MAX(x, y) ((x)>(y) ? (x) : (y))
 
@@ -51,7 +51,7 @@ example1(void)
 {
 	int *meetings[] = (int*[]){(int[]){5, 7}, (int[]){1, 3}, (int[]){9, 10}};
 
-	int available = countDays(10, meetings, ARRAY_LEN(meetings), NULL);
+	int available = countDays(10, meetings, nelem(meetings), NULL);
 	printf("3169.c:/^example1/		%d\n", available); // 2
 }
 
@@ -60,7 +60,7 @@ example2(void)
 {
 	int *meetings[] = (int*[]){(int[]){2, 4}, (int[]){1, 3}};
 
-	int available = countDays(5, meetings, ARRAY_LEN(meetings), NULL);
+	int available = countDays(5, meetings, nelem(meetings), NULL);
 	printf("3169.c:/^example2/		%d\n", available); // 1
 }
 
@@ -69,7 +69,7 @@ example3(void)
 {
 	int *meetings[] = (int*[]){(int[]){1, 6}};
 
-	int available = countDays(6, meetings, ARRAY_LEN(meetings), NULL);
+	int available = countDays(6, meetings, nelem(meetings), NULL);
 	printf("3169.c:/^example3/		%d\n", available); // 0
 }
 
@@ -91,7 +91,7 @@ wronganswer1(void)
 		(int[]){4, 8}, (int[]){18, 19},
 	};
 
-	int available = countDays(50, meetings, ARRAY_LEN(meetings), NULL);
+	int available = countDays(50, meetings, nelem(meetings), NULL);
 	printf("3169.c:/^wronganswer1/	%d\n", available); // 7
 }
 
@@ -114,7 +114,7 @@ wronganswer2(void)
 		(int[]){54, 58}, (int[]){14, 24}, (int[]){13, 21},
 	};
 
-	int available = countDays(65, meetings, ARRAY_LEN(meetings), NULL);
+	int available = countDays(65, meetings, nelem(meetings), NULL);
 	printf("3169.c:/^wronganswer2/	%d\n", available); // 8
 }
 

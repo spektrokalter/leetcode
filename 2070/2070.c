@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 #define MAX(x, y) ((x)>(y) ? (x) : (y))
 #define NMEM 100001
 
@@ -131,7 +131,7 @@ example1(void)
 	int queries[] = {1, 2, 3, 4, 5, 6};
 	int nanswer = 0;
 
-	int *answer = maximumBeauty(items, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
+	int *answer = maximumBeauty(items, nelem(items), NULL, queries, nelem(queries), &nanswer);
 
 	printf("2070.c:/example1/\n");
 	arrprint(answer, nanswer); // 2, 4, 5, 5, 6, 6
@@ -144,7 +144,7 @@ example2(void)
 	int queries[] = {1};
 	int nanswer = 0;
 
-	int *answer = maximumBeauty(items, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
+	int *answer = maximumBeauty(items, nelem(items), NULL, queries, nelem(queries), &nanswer);
 
 	printf("2070.c:/example2/\n");
 	arrprint(answer, nanswer); // 4
@@ -157,7 +157,7 @@ example3(void)
 	int queries[] = {5};
 	int nanswer = 0;
 
-	int *answer = maximumBeauty(items, ARRAY_LEN(items), NULL, queries, ARRAY_LEN(queries), &nanswer);
+	int *answer = maximumBeauty(items, nelem(items), NULL, queries, nelem(queries), &nanswer);
 
 	printf("2070.c:/example3/\n");
 	arrprint(answer, nanswer); // 0

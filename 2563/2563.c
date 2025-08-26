@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 int
 numcmp(const void *vp1, const void *vp2)
@@ -57,7 +57,7 @@ example1(void)
 	printf("2563.c:/example1/\n");
 
 	int arr[] = {0, 1, 7, 4, 4, 5};
-	long long pairs = countFairPairs(arr, ARRAY_LEN(arr), 3, 6);
+	long long pairs = countFairPairs(arr, nelem(arr), 3, 6);
 	printf("pairs: %lld\n", pairs); // 6
 }
 
@@ -67,7 +67,7 @@ example2(void)
 	printf("2563.c:/example2/\n");
 
 	int arr[] = {1, 7, 9, 2, 5};
-	long long pairs = countFairPairs(arr, ARRAY_LEN(arr), 11, 11);
+	long long pairs = countFairPairs(arr, nelem(arr), 11, 11);
 	printf("pairs: %lld\n", pairs); // 1
 }
 
@@ -77,7 +77,7 @@ wronganswer1(void)
 	printf("2563.c:/wronganswer1/\n");
 
 	int arr[] = {0, 0, 0, 0, 0, 0};
-	long long pairs = countFairPairs(arr, ARRAY_LEN(arr), 0, 0);
+	long long pairs = countFairPairs(arr, nelem(arr), 0, 0);
 	printf("pairs: %lld\n", pairs); // 15
 }
 

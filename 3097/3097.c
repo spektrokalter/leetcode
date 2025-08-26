@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 #define MIN(x, y) ((x)<(y) ? (x) : (y))
 
 int
@@ -78,7 +78,7 @@ example1
 {
 	printf("main.c:/example1/\n");
 	int arr[] = {1, 2, 3};
-	int len = minimumSubarrayLength(arr, ARRAY_LEN(arr), 2);
+	int len = minimumSubarrayLength(arr, nelem(arr), 2);
 	printf("len: %d\n", len); // 1
 }
 
@@ -88,7 +88,7 @@ example2
 {
 	printf("main.c:/example2/\n");
 	int arr[] = {2, 1, 8};
-	int len = minimumSubarrayLength(arr, ARRAY_LEN(arr), 10);
+	int len = minimumSubarrayLength(arr, nelem(arr), 10);
 	printf("len: %d\n", len); // 3
 }
 
@@ -98,7 +98,7 @@ example3
 {
 	printf("main.c:/example3/\n");
 	int arr[] = {1, 2};
-	int len = minimumSubarrayLength(arr, ARRAY_LEN(arr), 0);
+	int len = minimumSubarrayLength(arr, nelem(arr), 0);
 	printf("len: %d\n", len); // 1
 }
 
@@ -108,7 +108,7 @@ wronganswer1
 {
 	printf("main.c:/wronganswer1/\n");
 	int arr[] = {1, 2, 32, 21};
-	int len = minimumSubarrayLength(arr, ARRAY_LEN(arr), 55);
+	int len = minimumSubarrayLength(arr, nelem(arr), 55);
 	printf("len: %d\n", len); // 3
 }
 

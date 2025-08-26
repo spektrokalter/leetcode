@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 bool seenmem[6][6][6][6][6][6];
 int movesmem[6][6][6][6][6][6];
@@ -43,7 +43,7 @@ dfs(int **b, int movesdone)
 		}
 	}
 
-	for (int (*dir)[2] = dirs; dir != dirs+ARRAY_LEN(dirs); ++dir) {
+	for (int (*dir)[2] = dirs; dir != dirs+nelem(dirs); ++dir) {
 		int ii = i + (*dir)[0], jj = j + (*dir)[1];
 		if (ii < 0 || ii >= 2 || jj < 0 || jj >= 3)
 			continue;
@@ -77,7 +77,7 @@ example1(void)
 	int *arr[] = (int*[]){(int[]){1, 2, 3}, (int[]){4, 0, 5}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
+	int moves = slidingPuzzle(arr, nelem(arr), cols);
 	printf("moves: %d\n", moves); // 1
 }
 
@@ -88,7 +88,7 @@ example2(void)
 	int *arr[] = (int*[]){(int[]){1, 2, 3}, (int[]){5, 4, 0}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
+	int moves = slidingPuzzle(arr, nelem(arr), cols);
 	printf("moves: %d\n", moves); // -1
 }
 
@@ -99,7 +99,7 @@ example3(void)
 	int *arr[] = (int*[]){(int[]){4, 1, 2}, (int[]){5, 0, 3}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
+	int moves = slidingPuzzle(arr, nelem(arr), cols);
 	printf("moves: %d\n", moves); // 5
 }
 
@@ -110,7 +110,7 @@ wronganswer1(void)
 	int *arr[] = (int*[]){(int[]){3, 2, 4}, (int[]){1, 5, 0}};
 	int cols[] = {3, 3};
 
-	int moves = slidingPuzzle(arr, ARRAY_LEN(arr), cols);
+	int moves = slidingPuzzle(arr, nelem(arr), cols);
 	printf("moves: %d\n", moves); // 14
 }
 

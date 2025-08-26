@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 int
 prefixCount(char **words, int nwords, const char *pref)
@@ -32,7 +32,7 @@ example1(void)
 	printf("2185.c:/example1/\n");
 
 	char *words[] = {"pay", "attention", "practice", "attend"};
-	int n = prefixCount(words, ARRAY_LEN(words), "at");
+	int n = prefixCount(words, nelem(words), "at");
 	printf("n: %d\n", n); // 2
 }
 
@@ -42,7 +42,7 @@ example2(void)
 	printf("2185.c:/example2/\n");
 
 	char *words[] = {"leetcode", "win", "loops", "success"};
-	int n = prefixCount(words, ARRAY_LEN(words), "code");
+	int n = prefixCount(words, nelem(words), "code");
 	printf("n: %d\n", n); // 0
 }
 
@@ -52,7 +52,7 @@ wronganswer1(void)
 	printf("2185.c:/example2/\n");
 
 	char *words[] = {"lewsmb", "lewrydnve", "lewqqm", "lewec", "lewn", "lewb", "lewedb"};
-	int n = prefixCount(words, ARRAY_LEN(words), "lew");
+	int n = prefixCount(words, nelem(words), "lew");
 	printf("n: %d\n", n); // 7
 }
 
@@ -77,7 +77,7 @@ wronganswer2(void)
 		"zunfzinenk", "i", "p", "pet", "fxai", "ortqpwkukg",
 		"rxgh", "ylfh",
 	};
-	int n = prefixCount(words, ARRAY_LEN(words), "ikwjoty");
+	int n = prefixCount(words, nelem(words), "ikwjoty");
 	printf("n: %d\n", n); // 0
 }
 
@@ -119,7 +119,7 @@ wronganswer3(void)
 		"sxyjellhlh", "sxyjellhlh", "sxyjellhlh",
 		"sxyjellhlh", "sxyjellhlh"
 	};
-	int n = prefixCount(words, ARRAY_LEN(words), "sxyjellhlh");
+	int n = prefixCount(words, nelem(words), "sxyjellhlh");
 	printf("n: %d\n", n); // 92
 }
 

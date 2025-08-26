@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 #define MAX(x, y) ((x)>(y) ? (x) : (y))
 #define MIN(x, y) ((x)<(y) ? (x) : (y))
 
@@ -48,7 +48,7 @@ example1(void)
 	printf("2064.c:/example1/\n");
 
 	int quantities[] = {11, 6};
-	int x = minimizedMaximum(6, quantities, ARRAY_LEN(quantities));
+	int x = minimizedMaximum(6, quantities, nelem(quantities));
 	printf("x: %d\n", x); // 3
 }
 
@@ -58,7 +58,7 @@ example2(void)
 	printf("2064.c:/example2/\n");
 
 	int quantities[] = {15, 10, 10};
-	int x = minimizedMaximum(7, quantities, ARRAY_LEN(quantities));
+	int x = minimizedMaximum(7, quantities, nelem(quantities));
 	printf("x: %d\n", x); // 5
 }
 
@@ -68,7 +68,7 @@ example3(void)
 	printf("2064.c:/example3/\n");
 
 	int quantities[] = {100000};
-	int x = minimizedMaximum(1, quantities, ARRAY_LEN(quantities));
+	int x = minimizedMaximum(1, quantities, nelem(quantities));
 	printf("x: %d\n", x); // 100000
 }
 
@@ -78,7 +78,7 @@ wronganswer1(void)
 	printf("2064.c:/wronganswer1/\n");
 
 	int quantities[] = {5, 7};
-	int x = minimizedMaximum(2, quantities, ARRAY_LEN(quantities));
+	int x = minimizedMaximum(2, quantities, nelem(quantities));
 	printf("x: %d\n", x); // 7
 }
 

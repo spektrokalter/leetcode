@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 char *
 addSpaces(char *s, int *spaces, int nspaces)
@@ -36,7 +36,7 @@ example1(void)
 
 	int spaces[] = {8, 13, 15};
 
-	char *withspaces = addSpaces("LeetcodeHelpsMeLearn", spaces, ARRAY_LEN(spaces));
+	char *withspaces = addSpaces("LeetcodeHelpsMeLearn", spaces, nelem(spaces));
 	printf("%s\n", withspaces);
 }
 
@@ -47,7 +47,7 @@ wronganswer1(void)
 
 	int spaces[] = {1, 5, 7, 9};
 
-	char *withspaces = addSpaces("icodeinpython", spaces, ARRAY_LEN(spaces));
+	char *withspaces = addSpaces("icodeinpython", spaces, nelem(spaces));
 	printf("%s\n", withspaces);
 }
 

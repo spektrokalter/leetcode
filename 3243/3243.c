@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 struct node
 {
@@ -110,7 +110,7 @@ example1(void)
 
 	int ndistances = 0;
 	int *distances = shortestDistanceAfterQueries(
-		5, queries, ARRAY_LEN(queries), cols, &ndistances
+		5, queries, nelem(queries), cols, &ndistances
 	);
 
 	printf("distances:\n");
@@ -127,7 +127,7 @@ example2(void)
 
 	int ndistances = 0;
 	int *distances = shortestDistanceAfterQueries(
-		4, queries, ARRAY_LEN(queries), cols, &ndistances
+		4, queries, nelem(queries), cols, &ndistances
 	);
 
 	printf("distances:\n");

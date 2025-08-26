@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 #define MAX(x, y) ((x)>(y) ? (x) : (y))
 
 typedef struct rtnode Rtnode;
@@ -175,7 +175,7 @@ example1(void)
 	};
 	int cols[] = {2, 2};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 1
 }
 
@@ -190,7 +190,7 @@ example2(void)
 	};
 	int cols[] = {2, 2};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -206,7 +206,7 @@ example3(void)
 	};
 	int cols[] = {3, 3, 3};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -222,7 +222,7 @@ solution1(void)
 	};
 	int cols[] = {3, 3, 3};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -239,7 +239,7 @@ solution2(void)
 	};
 	int cols[] = {4, 4, 4, 4};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 3
 }
 
@@ -257,7 +257,7 @@ wronganswer1(void)
 	};
 	int cols[] = {11, 11, 11, 11, 11};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 2
 }
 
@@ -280,7 +280,7 @@ wronganswer2(void)
 	};
 	int cols[] = {7, 7, 7, 7, 7, 7, 7, 7, 7, 7};
 
-	int equalrows = maxEqualRowsAfterFlips(arr, ARRAY_LEN(arr), cols);
+	int equalrows = maxEqualRowsAfterFlips(arr, nelem(arr), cols);
 	printf("equalrows: %d\n", equalrows); // 1
 }
 

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+#define nelem(x) (sizeof(x) / sizeof((x)[0]))
 
 int primes[] = {
 	2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
@@ -71,7 +71,7 @@ example1
 {
 	printf("main.c:/example1/\n");
 	int arr[] = {4, 9, 6, 10};
-	bool ok = primeSubOperation(arr, ARRAY_LEN(arr));
+	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 1
 }
 
@@ -81,7 +81,7 @@ example2
 {
 	printf("main.c:/example2/\n");
 	int arr[] = {6, 8, 11, 12};
-	bool ok = primeSubOperation(arr, ARRAY_LEN(arr));
+	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 1
 }
 
@@ -91,7 +91,7 @@ example3
 {
 	printf("main.c:/example3/\n");
 	int arr[] = {5, 8, 3};
-	bool ok = primeSubOperation(arr, ARRAY_LEN(arr));
+	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 0
 }
 
@@ -101,7 +101,7 @@ wronganswer1
 {
 	printf("main.c:/wronganswer1/\n");
 	int arr[] = {8, 19, 3, 4, 9};
-	bool ok = primeSubOperation(arr, ARRAY_LEN(arr));
+	bool ok = primeSubOperation(arr, nelem(arr));
 	printf("ok: %d\n", ok); // 1
 }
 
