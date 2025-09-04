@@ -19,34 +19,60 @@ func Test(t *testing.T) {
 	}
 
 	// ab
-	//   \
-	//    aa---ba
-	//   /
+	// | \
+	// |  aa---ba
+	// | /
 	// ac
 	//
 	f("example1", []string{"aa", "ab", "ba", "ac"}, 'a', 2)
 
+	//    aa
+	//   /  \
+	// ab    ba
+	//
 	f("example2", []string{"aa", "ab", "ba"}, 'a', 1)
+
+	// ab   ba
+	//
 	f("example3", []string{"aa", "ab", "ba", "ac"}, 'b', 0)
 
+	// This case proves than nelems/2 is not the right answer.
+	//
 	// ab---bb---ba
 	//      |
 	//      ab
 	//
 	f("wronganswer1", []string{"ab", "ba", "bb", "ab"}, 'b', 1)
 
+	// This case proves that the longest straight path, beginning
+	// from a node with a single link, divided by two, is not the
+	// right answer, as could be induced from example1 and
+	// wronganswer1.
+	//
 	// cb----ca
 	//   \  /
 	//    cc
 	//
 	f("wronganswer2", []string{"cb", "ca", "cc"}, 'c', 1)
 
+	// This case proves that if a node with a single link is not
+	// present, beginning with any node indiscriminately is not
+	// the right answer.
+	//
 	// ba___aa____
 	// |    |     |
 	// |____ca___ba
 	//
 	f("wronganswer3", []string{"bb", "aa", "ca", "ba", "ba"}, 'a', 2)
 
+	// This case proves that the longest straight path, beginning
+	// from a node with the least links, divided by two, is not
+	// the right answer, as could be induced from wronganswer3.
+	//
+	// It also proves that nlinks/2 is not the right answer, as
+	// could be induced from all examples and wrong answers so
+	// far.
+	//
 	//  _______ba          ab_
 	// |   ___/| \___      |  |
 	// |  |    |     |     |  |
