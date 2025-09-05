@@ -18,17 +18,19 @@ func Test(t *testing.T) {
 		})
 	}
 
-	// ab
-	// | \
-	// |  aa---ba
-	// | /
-	// ac
+	// ab----ac
+	//   \  /
+	//    aa
+	//    |
+	//    ba
 	//
 	f("example1", []string{"aa", "ab", "ba", "ac"}, 'a', 2)
 
-	//    aa
-	//   /  \
-	// ab    ba
+	// ab
+	// |
+	// aa
+	// |
+	// ba
 	//
 	f("example2", []string{"aa", "ab", "ba"}, 'a', 1)
 
@@ -38,9 +40,11 @@ func Test(t *testing.T) {
 
 	// This case proves than nelems/2 is not the right answer.
 	//
-	// ab---bb---ba
+	//      ba
 	//      |
-	//      ab
+	//      bb
+	//     /  \
+	//   ab    ab
 	//
 	f("wronganswer1", []string{"ab", "ba", "bb", "ab"}, 'b', 1)
 
@@ -59,9 +63,10 @@ func Test(t *testing.T) {
 	// present, beginning with any node indiscriminately is not
 	// the right answer.
 	//
-	// ba___aa____
-	// |    |     |
-	// |____ca___ba
+	//      aa
+	//    _/| \_
+	//   /  |   \
+	// ba---ca---ba
 	//
 	f("wronganswer3", []string{"bb", "aa", "ca", "ba", "ba"}, 'a', 2)
 
@@ -73,13 +78,16 @@ func Test(t *testing.T) {
 	// could be induced from all examples and wrong answers so
 	// far.
 	//
-	//  _______ba          ab_
-	// |   ___/| \___      |  |
-	// |  |    |     |     |  |
-	// | bc    bc    bc    cb |
-	// |  |      \  /      |  |
-	// |  |_______\/_______|  |
-	// |__________bb__________|
+	//     ___ba__
+	//    /  /|   \
+	//   /  / |    \
+	// bc  /  bc    bc
+	//   \ \_ |  __/
+	//    \  \| /
+	//     \__bb
+	//        /\
+	//       /  \
+	//     cb----ab
 	//
 	f("wronganswer4", []string{"bb", "bc", "cc", "cb", "bc", "bc", "aa", "cc", "ab", "ba"}, 'b', 3)
 }
