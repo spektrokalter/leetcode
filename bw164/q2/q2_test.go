@@ -36,6 +36,7 @@ func Test(t *testing.T) {
 
 	// ab   ba
 	//
+	//	fmt.Println("example3")
 	f("example3", []string{"aa", "ab", "ba", "ac"}, 'b', 0)
 
 	// This case proves than nelems/2 is not the right answer.

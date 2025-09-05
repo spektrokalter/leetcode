@@ -1,5 +1,10 @@
 package q2
 
+import (
+	"cmp"
+	"slices"
+)
+
 func Score(cards []string, x byte) int { return score(cards, x) }
 
 func score(cards []string, x byte) int {
@@ -32,15 +37,27 @@ func score(cards []string, x byte) int {
 
 	var out int
 
-	for i := 'a'; i <= 'z'; i++ {
-		for j := i + 1; j <= 'z'; j++ {
-			for _, side := range []*['z' + 1]int{&left, &right} {
-				for (*side)[i] != 0 && (*side)[j] != 0 {
-					(*side)[i]--
-					(*side)[j]--
-					out++
+	for _, side := range []*['z' + 1]int{&left, &right} {
+		queue := []byte("abcdefghijklmnopqrstuvwxyz")
+		for true {
+			slices.SortFunc(queue, func(x, y byte) int { return cmp.Compare((*side)[y], (*side)[x]) })
+
+			var rightmost byte
+			for _, c := range queue {
+				if (*side)[c] != 0 {
+					rightmost = c
+				} else {
+					break
 				}
 			}
+
+			if queue[0] == rightmost || (*side)[queue[0]] == 0 || (*side)[rightmost] == 0 {
+				break
+			}
+
+			(*side)[queue[0]]--
+			(*side)[rightmost]--
+			out++
 		}
 	}
 
