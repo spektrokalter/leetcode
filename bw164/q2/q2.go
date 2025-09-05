@@ -11,46 +11,46 @@ func score(cards []string, x byte) int {
 	}
 	cards = filtered
 
-	children := map[int][]int{}
-	for i := 0; i < len(cards); i++ {
-		for j := i + 1; j < len(cards); j++ {
-			if compatible(cards[i], cards[j]) {
-				children[i] = append(children[i], j)
-				children[j] = append(children[j], i)
+	var both int
+	var left, right ['z' + 1]int
+
+	for _, c := range cards {
+		switch {
+		case c == string([]byte{x, x}):
+			both++
+		case c[0] == x:
+			left[c[1]]++
+		case c[1] == x:
+			right[c[0]]++
+		}
+	}
+
+	var out int
+
+	for i := 'a'; i <= 'z'; i++ {
+		for j := i + 1; j <= 'z'; j++ {
+			for _, side := range []*['z' + 1]int{&left, &right} {
+				if (*side)[i] != 0 && (*side)[j] != 0 {
+					(*side)[i]--
+					(*side)[j]--
+					out++
+				}
 			}
 		}
 	}
 
-	seen := make(map[int]bool, len(cards))
-	seenlink := make(map[[2]int]bool, len(cards))
-
-	var dfs func(int) int
-	dfs = func(i int) int {
-		seen[i] = true
-
-		nlinks := 0
-		for _, child := range children[i] {
-			if !seenlink[[2]int{i, child}] {
-				seenlink[[2]int{i, child}] = true
-				seenlink[[2]int{child, i}] = true
-				nlinks++
-			}
-			if !seen[child] {
-				nlinks += dfs(child)
+	for i := 0; i < both; i++ {
+	jloop:
+		for j := 'a'; j <= 'z'; j++ {
+			for _, side := range []*['z' + 1]int{&left, &right} {
+				if (*side)[j] != 0 {
+					(*side)[j]--
+					out++
+					break jloop
+				}
 			}
 		}
-
-		return nlinks
-	}
-
-	out := 0
-	for i := range cards {
-		out += dfs(i) / 2
 	}
 
 	return out
-}
-
-func compatible(x, y string) bool {
-	return x[0] == y[0] && x[1] != y[1] || x[1] == y[1] && x[0] != y[0]
 }

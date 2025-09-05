@@ -90,4 +90,21 @@ func Test(t *testing.T) {
 	//     cb----ab
 	//
 	f("wronganswer4", []string{"bb", "bc", "cc", "cb", "bc", "bc", "aa", "cc", "ab", "ba"}, 'b', 3)
+
+	// bb → bb bb → bb bb bb - no links
+	// ba → ba ba → ba ba ba — no links
+	// observation: left[c] connects with left[d], c ≠ d
+	//
+	// observation: if some left[x] is connected with the single
+	// "both" root before all left[] are connected with each
+	// other, two remaining left[y] would have no node to connect
+	// with.
+
+	// ab---ac
+	//   \ /
+	//    X
+	//   / \
+	// ab---ac
+	//
+	f("wronganswer5", []string{"cc", "bc", "ab", "ac", "ab", "ac"}, 'a', 2)
 }
