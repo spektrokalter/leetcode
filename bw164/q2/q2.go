@@ -25,6 +25,11 @@ func score(cards []string, x byte) int {
 		}
 	}
 
+	var (
+		lefttotal  = sum(left[:])
+		righttotal = sum(right[:])
+	)
+
 	var out int
 
 	for i := 'a'; i <= 'z'; i++ {
@@ -39,18 +44,41 @@ func score(cards []string, x byte) int {
 		}
 	}
 
-	for i := 0; i < both; i++ {
-	jloop:
-		for j := 'a'; j <= 'z'; j++ {
-			for _, side := range []*['z' + 1]int{&left, &right} {
-				if (*side)[j] != 0 {
-					(*side)[j]--
-					out++
-					break jloop
-				}
-			}
-		}
+	var (
+		leftremains  = sum(left[:])
+		rightremains = sum(right[:])
+	)
+
+	// Suppose leftremains is 12. It does not matter which way to
+	// spend bb: either directly on those 12 cards, or on 12 from
+	// lefttotal-leftremains, which would, in turn, free 12 cards
+	// to match against leftremains.
+
+	w := min(both, leftremains)
+	both -= w
+	out += w
+
+	v := min(both, rightremains)
+	both -= v
+	out += v
+
+	if both != 0 {
+		restored := min(both/2, (lefttotal-leftremains)/2)
+		both -= restored * 2
+		out += restored
+	}
+	if both != 0 {
+		restored := min(both/2, (righttotal-rightremains)/2)
+		both -= restored * 2
+		out += restored
 	}
 
 	return out
+}
+
+func sum(arr []int) (out int) {
+	for _, n := range arr {
+		out += n
+	}
+	return
 }

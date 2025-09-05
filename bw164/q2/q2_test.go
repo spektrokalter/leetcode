@@ -24,7 +24,7 @@ func Test(t *testing.T) {
 	//    |
 	//    ba
 	//
-	//	f("example1", []string{"aa", "ab", "ba", "ac"}, 'a', 2)
+	f("example1", []string{"aa", "ab", "ba", "ac"}, 'a', 2)
 
 	// ab
 	// |
@@ -32,11 +32,11 @@ func Test(t *testing.T) {
 	// |
 	// ba
 	//
-	//	f("example2", []string{"aa", "ab", "ba"}, 'a', 1)
+	f("example2", []string{"aa", "ab", "ba"}, 'a', 1)
 
 	// ab   ba
 	//
-	//	f("example3", []string{"aa", "ab", "ba", "ac"}, 'b', 0)
+	f("example3", []string{"aa", "ab", "ba", "ac"}, 'b', 0)
 
 	// This case proves than nelems/2 is not the right answer.
 	//
@@ -46,7 +46,7 @@ func Test(t *testing.T) {
 	//     /  \
 	//   ab    ab
 	//
-	//	f("wronganswer1", []string{"ab", "ba", "bb", "ab"}, 'b', 1)
+	f("wronganswer1", []string{"ab", "ba", "bb", "ab"}, 'b', 1)
 
 	// This case proves that the longest straight path, beginning
 	// from a node with a single link, divided by two, is not the
@@ -57,7 +57,7 @@ func Test(t *testing.T) {
 	//   \  /
 	//    cc
 	//
-	//	f("wronganswer2", []string{"cb", "ca", "cc"}, 'c', 1)
+	f("wronganswer2", []string{"cb", "ca", "cc"}, 'c', 1)
 
 	// This case proves that if a node with a single link is not
 	// present, beginning with any node indiscriminately is not
@@ -68,7 +68,7 @@ func Test(t *testing.T) {
 	//   /  |   \
 	// ba---ca---ba
 	//
-	//	f("wronganswer3", []string{"bb", "aa", "ca", "ba", "ba"}, 'a', 2)
+	f("wronganswer3", []string{"bb", "aa", "ca", "ba", "ba"}, 'a', 2)
 
 	// This case proves that the longest straight path, beginning
 	// from a node with the least links, divided by two, is not
@@ -89,7 +89,7 @@ func Test(t *testing.T) {
 	//       /  \
 	//     cb----ab
 	//
-	//	f("wronganswer4", []string{"bb", "bc", "cc", "cb", "bc", "bc", "aa", "cc", "ab", "ba"}, 'b', 3)
+	f("wronganswer4", []string{"bb", "bc", "cc", "cb", "bc", "bc", "aa", "cc", "ab", "ba"}, 'b', 3)
 
 	// bb → bb bb → bb bb bb - no links
 	// ba → ba ba → ba ba ba — no links
@@ -106,7 +106,7 @@ func Test(t *testing.T) {
 	//   / \
 	// ab---ac
 	//
-	//	f("wronganswer5", []string{"cc", "bc", "ab", "ac", "ab", "ac"}, 'a', 2)
+	f("wronganswer5", []string{"cc", "bc", "ab", "ac", "ab", "ac"}, 'a', 2)
 
 	// 7ba 11bc +7 | 4bc +4 |
 	// 7bb         | 7bb    | 2b
@@ -115,6 +115,37 @@ func Test(t *testing.T) {
 	// 7ba 11bc +4 | 7ba 7bc +2 | 6ba 6bc
 	// 7bb         | 2bb        |
 	// 3ab 4cb  +1 | 3ab 3ab    | 3ab 3ab
+	//
+	// Find (ncards[i]; ncards[i-1]) such that
+	// 1. ncards[i] > ncards[i-1]
+	// 2. ncards[i]-min(ncards[i], both) = ncards[i-1]
+	//
+	// Problem: 6bb 9ab 5cb 23wb 20vb 23xb 20yb. If we choose 9ab
+	// and 5cb, 4bb would be spent and the rest 2bb would be
+	// impossible to spend. It is more optimal to spend 6bb by 3bb
+	// on each 23wb 20vb.
+	//
+	// And the reverse: 6bb 1ab 2cb 6xb 12yb. If we choose 1ab and
+	// 2cb, 1bb would be spend and the rest 5bb would be
+	// impossible to spend. It is more optimal to spend 6bb on 6xb
+	// 12yb.
+	//
+	// In other words: the gap size, whether smaller (23-20 < 9-5)
+	// or larger (12-6 > 2-1), is irrelevant.
+	//
+	// ---
+	//
+	// What if we simplify 9ab 5cb 23wb 20vb 23xb 20yb somehow?
+	// 23wb can be paired with 20vb, but it can as well be paired
+	// with 5cb. Any items can be paired. 23wb can even be paired
+	// with 20vb, and the rest 3wb can be paired with 5cb, and the
+	// rest 2cb can be paured with 9ab, etc.
+	//
+	// IDEA: a side can be simplified to two numbers: remaining
+	// cards and removed cards. 9ab 5cb 23wb 20vb 23xb 20yb is
+	// simplified to 4 and 96. 4 is any group of 4 incompatible
+	// cards, 96 is an even number cards, each having a compatible
+	// pair within the same 96.
 	//
 	f(
 		"wronganswer6",
@@ -130,5 +161,25 @@ func Test(t *testing.T) {
 		},
 		'b',
 		16,
+	)
+
+	// 2ea 2eb 6ec ed
+	// 4ee
+	// 2ae 2be ce 2de
+	//
+	f(
+		"wronganswer7",
+		[]string{
+			"cb", "ec", "ad", "ee", "be", "ee", "eb",
+			"ea", "ee", "cc", "ac", "de", "bb", "aa",
+			"db", "cd", "be", "ac", "bc", "dc", "bb",
+			"bc", "db", "ca", "ec", "ac", "ae", "ac",
+			"ea", "de", "ec", "ba", "ce", "bd", "ca",
+			"ad", "ec", "db", "ab", "ac", "ba", "ee",
+			"dc", "eb", "ae", "ec", "ec", "dd", "ed",
+			"bc",
+		},
+		'e',
+		11,
 	)
 }
