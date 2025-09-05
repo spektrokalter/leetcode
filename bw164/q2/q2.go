@@ -30,7 +30,7 @@ func score(cards []string, x byte) int {
 	for i := 'a'; i <= 'z'; i++ {
 		for j := i + 1; j <= 'z'; j++ {
 			for _, side := range []*['z' + 1]int{&left, &right} {
-				if (*side)[i] != 0 && (*side)[j] != 0 {
+				for (*side)[i] != 0 && (*side)[j] != 0 {
 					(*side)[i]--
 					(*side)[j]--
 					out++

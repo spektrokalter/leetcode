@@ -24,7 +24,7 @@ func Test(t *testing.T) {
 	//    |
 	//    ba
 	//
-	f("example1", []string{"aa", "ab", "ba", "ac"}, 'a', 2)
+	//	f("example1", []string{"aa", "ab", "ba", "ac"}, 'a', 2)
 
 	// ab
 	// |
@@ -32,11 +32,11 @@ func Test(t *testing.T) {
 	// |
 	// ba
 	//
-	f("example2", []string{"aa", "ab", "ba"}, 'a', 1)
+	//	f("example2", []string{"aa", "ab", "ba"}, 'a', 1)
 
 	// ab   ba
 	//
-	f("example3", []string{"aa", "ab", "ba", "ac"}, 'b', 0)
+	//	f("example3", []string{"aa", "ab", "ba", "ac"}, 'b', 0)
 
 	// This case proves than nelems/2 is not the right answer.
 	//
@@ -46,7 +46,7 @@ func Test(t *testing.T) {
 	//     /  \
 	//   ab    ab
 	//
-	f("wronganswer1", []string{"ab", "ba", "bb", "ab"}, 'b', 1)
+	//	f("wronganswer1", []string{"ab", "ba", "bb", "ab"}, 'b', 1)
 
 	// This case proves that the longest straight path, beginning
 	// from a node with a single link, divided by two, is not the
@@ -57,7 +57,7 @@ func Test(t *testing.T) {
 	//   \  /
 	//    cc
 	//
-	f("wronganswer2", []string{"cb", "ca", "cc"}, 'c', 1)
+	//	f("wronganswer2", []string{"cb", "ca", "cc"}, 'c', 1)
 
 	// This case proves that if a node with a single link is not
 	// present, beginning with any node indiscriminately is not
@@ -68,7 +68,7 @@ func Test(t *testing.T) {
 	//   /  |   \
 	// ba---ca---ba
 	//
-	f("wronganswer3", []string{"bb", "aa", "ca", "ba", "ba"}, 'a', 2)
+	//	f("wronganswer3", []string{"bb", "aa", "ca", "ba", "ba"}, 'a', 2)
 
 	// This case proves that the longest straight path, beginning
 	// from a node with the least links, divided by two, is not
@@ -89,7 +89,7 @@ func Test(t *testing.T) {
 	//       /  \
 	//     cb----ab
 	//
-	f("wronganswer4", []string{"bb", "bc", "cc", "cb", "bc", "bc", "aa", "cc", "ab", "ba"}, 'b', 3)
+	//	f("wronganswer4", []string{"bb", "bc", "cc", "cb", "bc", "bc", "aa", "cc", "ab", "ba"}, 'b', 3)
 
 	// bb → bb bb → bb bb bb - no links
 	// ba → ba ba → ba ba ba — no links
@@ -106,5 +106,29 @@ func Test(t *testing.T) {
 	//   / \
 	// ab---ac
 	//
-	f("wronganswer5", []string{"cc", "bc", "ab", "ac", "ab", "ac"}, 'a', 2)
+	//	f("wronganswer5", []string{"cc", "bc", "ab", "ac", "ab", "ac"}, 'a', 2)
+
+	// 7ba 11bc +7 | 4bc +4 |
+	// 7bb         | 7bb    | 2b
+	// 3ab 4cb  +3 | cb  +1 |
+	//
+	// 7ba 11bc +4 | 7ba 7bc +2 | 6ba 6bc
+	// 7bb         | 2bb        |
+	// 3ab 4cb  +1 | 3ab 3ab    | 3ab 3ab
+	//
+	f(
+		"wronganswer6",
+		[]string{
+			"ab", "aa", "ab", "bc", "cc", "bc", "bb",
+			"ac", "bc", "bc", "aa", "aa", "ba", "bc",
+			"cb", "ba", "ac", "bb", "cb", "ac", "cb",
+			"cb", "ba", "bc", "ca", "ba", "bb", "cc",
+			"cc", "ca", "ab", "bb", "bc", "ba", "ac",
+			"bc", "ac", "ac", "bc", "bb", "bc", "ac",
+			"bc", "aa", "ba", "cc", "ac", "bb", "ba",
+			"bb",
+		},
+		'b',
+		16,
+	)
 }
