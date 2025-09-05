@@ -16,84 +16,79 @@ func score(cards []string, x byte) int {
 	}
 	cards = filtered
 
-	var both int
-	var left, right ['z' + 1]int
+	var middle int
+	var (
+		top    = map[byte]int{}
+		bottom = map[byte]int{}
+	)
 
 	for _, c := range cards {
 		switch {
 		case c == string([]byte{x, x}):
-			both++
+			middle++
 		case c[0] == x:
-			left[c[1]]++
+			top[c[1]]++
 		case c[1] == x:
-			right[c[0]]++
+			bottom[c[0]]++
 		}
 	}
 
 	var (
-		lefttotal  = sum(left[:])
-		righttotal = sum(right[:])
+		toptotal    = sum(top)
+		bottomtotal = sum(bottom)
 	)
 
 	var out int
 
-	for _, side := range []*['z' + 1]int{&left, &right} {
+	for _, side := range []map[byte]int{top, bottom} {
 		queue := []byte("abcdefghijklmnopqrstuvwxyz")
 		for true {
-			slices.SortFunc(queue, func(x, y byte) int { return cmp.Compare((*side)[y], (*side)[x]) })
+			slices.SortFunc(queue, func(x, y byte) int { return cmp.Compare(side[y], side[x]) })
 
 			var rightmost byte
 			for _, c := range queue {
-				if (*side)[c] != 0 {
+				if side[c] != 0 {
 					rightmost = c
 				} else {
 					break
 				}
 			}
 
-			if queue[0] == rightmost || (*side)[queue[0]] == 0 || (*side)[rightmost] == 0 {
+			if queue[0] == rightmost || side[queue[0]] == 0 || side[rightmost] == 0 {
 				break
 			}
 
-			(*side)[queue[0]]--
-			(*side)[rightmost]--
+			side[queue[0]]--
+			side[rightmost]--
 			out++
 		}
 	}
 
 	var (
-		leftremains  = sum(left[:])
-		rightremains = sum(right[:])
+		toporphans    = sum(top)
+		bottomorphans = sum(bottom)
 	)
 
-	// Suppose leftremains is 12. It does not matter which way to
-	// spend bb: either directly on those 12 cards, or on 12 from
-	// lefttotal-leftremains, which would, in turn, free 12 cards
-	// to match against leftremains.
+	pairedorphans := min(middle, toporphans)
+	middle -= pairedorphans
+	out += pairedorphans
 
-	w := min(both, leftremains)
-	both -= w
-	out += w
+	pairedorphans = min(middle, bottomorphans)
+	middle -= pairedorphans
+	out += pairedorphans
 
-	v := min(both, rightremains)
-	both -= v
-	out += v
+	pairs := min(middle/2, (toptotal-toporphans)/2)
+	middle -= pairs * 2
+	out += pairs
 
-	if both != 0 {
-		restored := min(both/2, (lefttotal-leftremains)/2)
-		both -= restored * 2
-		out += restored
-	}
-	if both != 0 {
-		restored := min(both/2, (righttotal-rightremains)/2)
-		both -= restored * 2
-		out += restored
-	}
+	pairs = min(middle/2, (bottomtotal-bottomorphans)/2)
+	middle -= pairs * 2
+	out += pairs
 
 	return out
 }
 
-func sum(arr []int) (out int) {
+func sum(arr map[byte]int) (out int) {
 	for _, n := range arr {
 		out += n
 	}
